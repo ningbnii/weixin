@@ -1,0 +1,59 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+    <a href="{:U('index')}" class="btn btn-success">底部菜单分类设置</a>
+    <a href="{:U('styleSet')}" class="btn btn-danger">底部菜单风格选择</a>
+    <a href="{:U('plugmenu')}" class="btn btn-success">菜单颜色设置</a> 
+
+    <div class="row catemenu" style="margin-top:20px;">
+      <php>
+        for($i=0;$i<17;$i++){
+      </php>
+
+      <div class='col-md-2 <if condition="$data['catemenuid'] eq $i">active</if>'>
+        <label>
+          <img src="__PUBLIC__/Weixin/images/catemenu/<php>echo $i;</php>.png">
+          <input name="catemenuid" value="<php>echo $i;</php>" <if condition="$data['catemenuid'] eq $i">checked="checked"</if> type="radio">风格{$i}
+        </label>
+      </div>
+      <php>
+        }
+      </php>      
+    </div>
+
+   </div>
+  </div>
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+  $(function(){
+    $("input:radio").click(function(){
+      var _this = $(this);
+      var catemenuid = _this.val();
+      $.ajax({
+        url:'{:U('styleSet')}',
+        type:'post',
+        data:{catemenuid:catemenuid},
+        success:function(data){
+          if(data.info == '修改成功'){
+            _this.parent().parent().siblings('.active').removeClass('active');
+            _this.parent().parent().addClass('active');            
+          }
+          var d = dialog({
+            title:'提示信息',
+            content: data.info,
+
+          }).width(320).height(100).showModal();
+          setTimeout(function () {
+              d.close().remove();
+          }, 1000);
+        }
+      })
+    })
+  })
+</script>
+</block>
+

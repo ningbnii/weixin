@@ -1,0 +1,122 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+    
+    var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+        fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+      
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#picurl').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#picurl').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+      <form class="form-horizontal" role="form" method="post" action="">
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">父级菜单</label>
+          <div class="col-lg-2">
+            <select class="form-control" name='fid'>
+              <option value='0' <if condition="$data['fid'] eq 0">selected="selected"</if>>一级菜单</option>
+              <volist name='catemenu' id='catemenu'>
+              <option value='{$catemenu.id}' <if condition="$catemenu['id'] eq $data['fid']">selected="selected"</if>>
+                {$catemenu.name}
+              </option>
+              </volist>
+            </select>
+          </div>
+        </div>
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">菜单名称</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='name' value='{$data.name}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图标</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="picurl" id="picurl" value="{$data.picurl}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+        </div>
+        <div class="col-md-offset-2">
+          <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）</div>
+          <div style="background:#000;width:570px;margin:10px 0;text-align:center">
+          <?php
+          for ($i=1;$i<247;$i++){
+            echo '<img onclick="document.getElementById(\'picurl\').value=this.src" style="width:30px;cursor:pointer;" src="__PUBLIC__/Weixin/images/photo/plugmenu'.$i.'.png" />';
+          }
+          ?>
+          </div>          
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图文外链地址</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="" type="text" name='url' value='{$data.url}'><br>
+            <p>如需跳转到其他网址，请在这里填写网址(例如：http://baidu.com，记住必须有http://)如果填写了图文详细内容，这里请留空，不要设置</p>
+          </div>
+          <div class="col-lg-3">
+          <a href="#" onclick="addLink('url',0)" class="btn btn-danger">从功能库添加</a><br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">排序</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='sort' value="{$data.sort}">
+          </div>
+        </div>  
+     
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否显示</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="status" value="1" <if condition="$data['status'] eq 1">checked="checked"</if> type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="status" value="0" type="radio" <if condition="$data['status'] eq 0">checked="checked"</if>>
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+        <input type='hidden' name='id' value='{$data.id}'>                                                         
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

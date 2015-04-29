@@ -1,0 +1,23 @@
+<extend name='Base/common' />
+
+
+<block name='body'>
+  <ul class="mainmenu">
+  <volist name="info" id="vo">
+    <li>
+      <div class="menubtn"> <a href="<if condition="$vo['url'] eq ''">{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+        <else/>
+        {$vo.url|htmlspecialchars_decode}
+        </if>
+        ">
+        <div class="menumesg">
+          <div class="menuimg"><img src="{$vo.img}"></div>
+          <div class="menutitle">{$vo.name}</div>
+        </div>
+        </a> </div>
+    </li>
+  </volist>
+  <div class="clr"></div>
+</ul>
+
+</block>

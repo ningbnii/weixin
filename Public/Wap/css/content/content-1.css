@@ -1,0 +1,54 @@
+body{background: #f5f5f5;}
+#content{
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top: 50px;
+	font-family: microsoft yahei;
+}
+h1{font-size: 1.2em;}
+#content .header img{
+	width: 50px;
+	height: 50px;
+	box-shadow: 0 1px 0 #e0e0e0;
+}
+#content .header dt,#content .header dd{
+	padding-left:0px;
+}
+#content .header dl{
+	background:url(images/2000.png) no-repeat center center;
+	background-size:100% 100%;
+	padding-top: 5px;
+}
+
+#content .history{
+	margin-top: 10px;
+	padding:10px;
+	background: #fff;
+	padding-top: 1px;
+	border-radius: 5px;
+	box-shadow: 0 1px 0 #e0e0e0;
+	margin-bottom: 20px;
+}
+#content .history li p{
+	border-bottom:1px solid #e0e0e0;
+}
+#content .history li p span{
+	padding-top: 10px;
+	color:#e0e0e0;
+}
+#content .history ul li{
+	height: 40px;
+	line-height: 40px;
+}
+#content .history .more{
+	height: 50px;
+	border: 1px solid #e0e0e0;
+	border-radius: 25px;
+	box-shadow: 0 1px 0 #e0e0e0;
+	line-height: 50px;
+	font-size: 14px;
+	font-weight: bold;
+}
+#content .copyright{
+	
+}

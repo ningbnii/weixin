@@ -1,0 +1,222 @@
+<extend name='Base/common'/>
+
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+
+      var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#picurl').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#picurl').val(url);
+              editor.hideDialog();
+              $('#picurlshow').attr('href',url);
+            }
+          })
+        })
+      })
+	
+      K('#chooseimg2').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#homeurl').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#homeurl').val(url);
+              editor.hideDialog();
+              $('#homeurlshow').attr('href',url);
+            }
+          })
+        })
+      })
+
+      K('#choose_musicurl').click(function() {
+        editor.loadPlugin('insertmedia', function() {
+            editor.plugin.fileDialog({
+                fileUrl : K('#musicurl').val(),
+                clickFn : function(url, title) {
+                    K('#musicurl').val(url);
+                    editor.hideDialog();
+                }
+            });
+        });
+    });
+	  
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="默认关键词是：首页" type="text" required='required' name='keyword' value='首页' readonly=''>
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label class="col-lg-2 control-label">标题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='title' value='{$data.title}'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">简介</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='info' required='required'>{$data.info}</textarea>
+          </div>
+        </div>
+               
+        <div class="form-group">
+          <label class="col-lg-2 control-label">封面图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="picurl" id="picurl" value="{$data.picurl}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+          <div class='col-lg-4'>
+            <a href="" class="prettyPhoto[pp_gal]" id="picurlshow"><button class='btn btn-danger'>预览</button></a>
+          </div>
+          
+        </div>
+               
+        <div class="form-group">
+          <label class="col-lg-2 control-label">3G网站背景</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="homeurl" id="homeurl" value="{$data.homeurl}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg2' class='btn btn-success'>
+          </div>
+          <div class='col-lg-4'>
+            <a href="" class="prettyPhoto[pp_gal]" id="homeurlshow"><button class='btn btn-danger'>预览</button></a>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">底部版权</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='copyright' value='{$data.copyright}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">主页音乐</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="musicurl" id="musicurl" value="{$data.musicurl}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择文件' id='choose_musicurl' class='btn btn-success'>
+          </div>
+        </div>
+
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">选择背景动画</label>
+          <div class="col-lg-2">
+            <select class="form-control" name='bjdh'>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+
+
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否显示背景图片</label>
+          <div class="col-lg-5">
+            <div class="radio-inline">
+              <label>
+                <input name="play_img" value="1" <if condition="$data['play_img'] eq 1">checked="checked"</if> type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input name="play_img" value="0" type="radio" <if condition="$data['play_img'] eq 0">checked="checked"</if>>
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否开启背景音乐</label>
+          <div class="col-lg-5">
+            <div class="radio-inline">
+              <label>
+                <input name="play_audio" value="1" checked="checked" type="radio" <if condition="$data['play_audio'] eq 1">checked="checked"</if>>
+                是
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input name="play_audio" value="0" type="radio" <if condition="$data['play_audio'] eq 0">checked="checked"</if>>
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">第三方接口</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='apiurl' placeholder='只适用于引用第三方3G网站的链接' value='{$data.apiurl}'>
+          </div>
+        </div>
+        
+                
+        <div class="form-group">
+          <label class="col-lg-2 control-label">统计代码</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='tongji'>{$data.tongji}</textarea>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">商家电话</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='dianhua' placeholder='' value='{$data.dianhua}'>
+          </div>
+        </div>
+        <input type='hidden' name='id' value='{$data.id}'>   
+                                                                       
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+  $(function(){
+    $('#picurlshow').attr('href',$('#picurl').val());
+    $('#homeurlshow').attr('href',$('#homeurl').val());
+  })
+</script>
+</block>

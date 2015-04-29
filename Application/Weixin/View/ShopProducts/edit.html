@@ -1,0 +1,159 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+		
+		var editor = K.create('textarea[name="info"]', {
+          allowFileManager : true,
+          uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+          fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+        });
+		
+      editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+      
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                                    
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品名称</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='name' value='{$data.name}'>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品库存数量</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='number' value="{$data.number}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品售价</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='price' value="{$data.price}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">原价</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='original_price' value='{$data.original_price}'>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">会员价</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='vip_price' value='{$data.vip_price}'>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">销售基数</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='base' value='{$data.base}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否上架</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="flag" value="1" <if condition="$data['flag'] eq 1">checked="checked"</if> type="radio">
+                 上架
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="flag" value="2" <if condition="$data['flag'] eq 2">checked="checked"</if> type="radio">
+                 下架
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">邮费</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='postage' value='{$data.postage}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">排序</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='sorts' value="{$data.sorts}">
+          </div>
+        </div> 
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品所属分类</label>
+          <div class="col-lg-2">
+            <select class="form-control" name='classid'>
+              <volist name='classify' id='classify'>
+              <option value='{$classify.id}' <if condition="$classify['id'] eq $data['classid']">selected='selected'</if>>
+                <php>
+                  for($i=0;$i<$classify['count']-2;$i++){
+                    echo '&nbsp;';
+                }
+                </php>
+                {$classify.name}
+              </option>
+              </volist>
+            </select>
+          </div>
+        </div>     
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="pic" id="pic" value="{$data.pic}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">产品详细页内容</label>
+          <div class="col-lg-8">
+            <textarea style="visibility:hidden;height:400px;" class="form-control col-lg-8" name='info'>{$data.info}</textarea>
+          </div>
+        </div>
+        <input type='hidden' name='id' value='{$data.id}'>                                                          
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <input type="submit" class='btn btn-sm btn-success' value='保存'>
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+        
+  <div id="getLink" class='hidden'>
+    <iframe src="{:U('getLink')}" frameborder="0" id="iframe"></iframe>
+  </div>
+</block>

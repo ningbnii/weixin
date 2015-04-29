@@ -1,0 +1,40 @@
+<extend name='Base/list'/>
+
+<block name='body'>
+	<div class="content">
+		<volist name='res' id='vo'>
+
+			<div class="col-xs-12">
+				<div class="row item">
+					<div class="col-xs-2">
+						<div class="row">
+							<div class="date">
+								<p class='text-center'>2014</p>
+								<p class='text-center'>11/27</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-10">
+						<div class="row">
+							<div class="right">
+								<h1>{$vo.title}</h1>
+								<p class='time'>{$vo.createtime|date='Y-m-d',###}</p>
+								<img src="{$vo.pic}" alt="" class='img-responsive img-thumbnail'>
+								<p class='info'>{$vo.text}</p>
+								<if condition="$vo['url']">
+						        	<a href="{$vo.url}">
+						        <else />
+						        	<a href="{:U('Index/content',array('fid'=>$_GET['classid'],'id'=>$vo['id']))}">
+						        </if>
+						        	<p>查看更多</p>
+						    	</a>
+							</div>
+						</div>
+					</div>					
+				</div>
+		
+			</div>
+	
+		</volist>
+	</div>
+</block>

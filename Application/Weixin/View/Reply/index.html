@@ -1,0 +1,98 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+        <div class="container">
+          <a href="{:U('config')}" class="btn btn-success">留言板配置</a>        
+
+                <div class="widget">
+
+                <div class="widget-head">
+                  <div class="pull-left">自定图文回复列表</div>
+                  <div class="clearfix"></div>
+                </div>
+
+                  <div class="widget-content">
+
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>留言</th>
+                          <th>创建时间</th>
+                          <th>回复</th>
+                          <th>回复时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name='list' id='vo'>
+                        <tr>
+                          <td>{$i}</td>
+                          <td>{$vo.content|msubstr=0,20,'utf8',false}</td>
+                          <td>{$vo.createtime|date='Y-m-d',###}</td>
+                          <td>{$vo.reply_content|msubstr=0,20,'utf8',false}</td>
+                          <td>{$vo.reply_createtime|date='Y-m-d',###}</td>
+                          <td>
+                              <button class="btn btn-xs btn-warning reply-button" data-id="{$vo.wecha_id}"><i class="fa fa-comments-o"></i></button>
+    
+                          </td>
+                        </tr>
+                        </volist>                               
+                      </tbody>
+                    </table>
+
+                    <div class="widget-foot">
+
+                     
+                        <ul class="pagination pagination-sm pull-right">
+                          <li><a href="#">Prev</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">Next</a></li>
+                        </ul>
+                     
+                      <div class="clearfix"></div> 
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+        </div>
+  </div>
+
+  <div id="reply" class='hidden'>
+    <iframe src="" frameborder="0" id="iframe"></iframe>
+  </div>   
+</block>
+
+<block name='extra_js'>
+  <script>
+    $(function(){
+      $('.reply-button').click(function(){
+        var _this = $(this);
+        var wecha_id = _this.attr('data-id');
+        var src = '/index.php?m=Weixin&c=Reply&a=reply&wecha_id='+wecha_id;
+
+        $('#iframe').attr('src',src);
+
+        var content = $('#reply').html();
+        var d = dialog({
+          title: '回复',
+          content : content,
+
+        });
+
+        d.width($(document.body).width()*0.5);
+        d.height($(document.body).height()*0.5);
+        d.showModal();
+
+      });
+
+    })
+  </script>
+</block>

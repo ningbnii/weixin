@@ -1,0 +1,10 @@
+﻿	body{background: #ebebeb;font-family: microsoft yahei;}
+	.box{margin-bottom: 80px;}
+	.date{background: #cecece;width: 150px;border-radius: 5px;color: #fefefe;margin-top: 10px;}
+	.message-box-left{position: relative;min-height:50px;background: #fff;border-radius: 5px;color: #000;}
+	.message-box-right{position: relative;min-height:50px;background: #a0e759;border-radius: 5px;color: #000;}
+	.message-box-left p,.message-box-right p{overflow: hidden;word-break:break-all;margin-top: 10px;}
+	.triangle-left{position: absolute;left: -19px;overflow: hidden;width: 0;height: 0;border-width: 10px;border-style: dashed solid dashed dashed;top: 10px;border-color: transparent #fff transparent transparent;}
+	.triangle-right{position: absolute;right: -19px;overflow: hidden;width: 0;height: 0;border-width: 10px;border-style: dashed dashed dashed solid;top: 10px;border-color: transparent transparent transparent #a0e759;}
+	.item{margin-top: 20px;}
+	.form{margin-top: 10px;}

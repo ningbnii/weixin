@@ -1,0 +1,58 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+        <div class="container">
+          <a href="{:U('index')}" class="btn btn-danger">首页模版选择</a>
+          <a href="{:U('child')}" class="btn btn-success">二级分类模版选择</a>
+          <a href="{:U('listTp')}" class="btn btn-success">列表模版选择</a>
+          <a href="{:U('contentTp')}" class="btn btn-success">详情页模版选择</a><br><br>
+
+          <ul class='list-inline tplist'>
+            <php>
+              for($i=1;$i<=5;$i++){
+            </php>
+            <li <if condition="$data['tpid'] eq $i">class='active'</if>>
+              <label>
+                <img src="__PUBLIC__/Weixin/images/cate/cate{$i}.png" alt="" class='img-responsive'>
+                <input type='radio' name='tpid' value='{$i}' <if condition="$data['tpid'] eq $i">checked='checked'</if>>模版{$i}
+              </label>
+            </li>
+            <php>
+            }
+            </php>
+          </ul>
+          
+        </div>
+  </div>   
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+  $(function(){
+    $("input:radio").click(function(){
+      var _this = $(this);
+      var tpid = _this.val();
+      $.ajax({
+        url:'{:U('index')}',
+        type:'post',
+        data:{tpid:tpid},
+        success:function(data){
+          if(data.info == '修改成功'){
+            _this.parent().parent().siblings('.active').removeClass('active');
+            _this.parent().parent().addClass('active');            
+          }
+          var d = dialog({
+            title:'提示信息',
+            content: data.info,
+
+          }).width(320).height(100).showModal();
+          setTimeout(function () {
+              d.close().remove();
+          }, 1000);
+        }
+      })
+    })
+  })
+</script>
+</block>

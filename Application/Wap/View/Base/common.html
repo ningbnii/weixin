@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<include file="Public/head"/>
+</head>
+<body id="cate{$tpid}" <if condition="$homeInfo['play_img'] eq '1' and $homeInfo['homeurl'] neq ''">style="background:url({$homeInfo['homeurl']}) no-repeat center top;background-size:cover;"</if>>
+<div class="container">
+
+<if condition="$homeInfo['play_audio'] eq '1' and $homeInfo['musicurl'] neq ''">
+	<include file='Public/music' />
+</if>
+
+<div class="row">
+	<include file='Public/banner' />
+</div>
+
+<div class="row">
+	<include file='Public/body' />
+</div>
+
+
+<include file="Public/styleInclude"/>
+
+<include file='Public/footer' />	
+</div>
+
+	
+</body>
+</html>

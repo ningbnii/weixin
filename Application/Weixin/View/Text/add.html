@@ -1,0 +1,50 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+        <div class="container">
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <a href="javascript:history.go(-1);"  class="right btn btn-info" style="margin-top:-27px" >返回</a></div>
+  <div class="msgWrap">
+    <form class="form" method="post"   action="" enctype="multipart/form-data" >
+      <TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+        <THEAD>
+          <TR>
+            <TH valign="top"><label for="keyword">关键词：</label></TH>
+            <TD><input type="input" class="px" id="keyword" value="" name="keyword" style="width:500px" >
+              <br />
+              多个关键词请用空格格开：例如: 美丽&nbsp;漂亮&nbsp;好看 </TD>
+            <TD>&nbsp;</TD>
+          </TR>
+
+        </THEAD>
+        <TBODY>
+          <TR>
+            <TH valign="top"><label for="text">内容或简介：</label></TH>
+            <TD><textarea  class="px" id="Hfcontent" name="text" style="width:500px; height:150px"></textarea>
+              <br />
+              请不要多于1000字否则无法发送! </TD>
+          </TR>
+            
+          <TR>
+            <TH></TH>
+            <TD><input type="submit" class="btn btn-success pull-left" style='margin-right:10px;' value='保存'>
+              <div class="pull-left">
+                <ul>
+                  <li class="biaoqing"><span>表情</span>
+                  <include file='Public/face'/>
+              </div>
+              <div class="clr"></div>
+            </TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+    </form>
+  </div>
+</div>               
+          
+        </div>
+  </div>
+
+</block>

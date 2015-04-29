@@ -1,0 +1,32 @@
+<meta content='charset=utf8'>
+<title>{$wxuser.wxname}</title>
+<base href=".">
+<meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+<link rel="stylesheet" type='text/css' href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/reset.css" media='all'>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/font-awesome.css" media='all'>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=yes" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/cate/cate{$tpid}.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/iscroll.css">
+
+<script type="text/javascript" src='__PUBLIC__/Wap/js/iscroll.js'></script>
+<script type="text/javascript" src='__PUBLIC__/Wap/js/jQuery.js'></script>
+<script type="text/javascript">
+    var myScroll;
+    function loaded() {
+        myScroll = new iScroll('wrapper', {
+            snap: true,
+            momentum: false,
+            hScrollbar: false,
+            onScrollEnd: function () {
+                document.querySelector('#indicator > li.active').className = '';
+                document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+            }
+        });
+
+
+    }
+    document.addEventListener('DOMContentLoaded', loaded, false);
+</script>

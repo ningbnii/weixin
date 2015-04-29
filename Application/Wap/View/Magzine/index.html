@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{$data.title}</title>
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="pragram" content="no-cache">
+<!--移动端版本兼容 -->
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneScale = phoneWidth/640;
+
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if(version>2.3){
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+        // andriod 2.3以上
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+        // 其他系统
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+</script><meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+<!--移动端版本兼容 end -->
+
+<link rel="stylesheet" href="__PUBLIC__/Wap/magzine/css/success.css?v=20140621">
+<style type="text/css">
+#guanzhu{
+  background-image:url(__PUBLIC__/Wap/magzine/images/buy.png);
+  display:inline-block;
+  height:53px;
+  right:0;
+  line-height:53px;
+  position:absolute;
+  bottom:0;
+  vertical-align:middle;
+  width:168px;
+z-index:999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="p-index" style="height: 753px;">
+    <div class="audio_txt">
+      <p class="txt">点击开启/关闭音效</p>
+      <p></p>
+    </div>
+<a id="guanzhu" href="#"></a>
+    <section class="fn-audio">
+      <div class="btn">
+        <p class="btn_audio"><span class="css_sprite01 audio_open"></span><span class="css_sprite01 audio_close"></span></p>
+        <audio id="car_audio" controls="" preload="preload">
+          
+          <source <if condition="$data['bgmusic'] eq ''">src="__PUBLIC__/Wap/magzine/images/bgmusic.mp3"<else/>src="{$data.bgmusic}"</if> type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <section class="u-arrow"><img src="__PUBLIC__/Wap/magzine/images/btn01_arrow.png" width="28"></section>
+
+    <!-- 旋转正面 data-open: 0->关闭， 1->开启 -->
+
+    <!-- 旋转正面 end-->
+      <input id="ca-tips" type="hidden" value="">
+      <!-- 蒙板背景图 -->
+      <input id="r-cover" type="hidden" value="{$data.c}">
+      <div class="m-page m-page1 v-page" data-id="16265" data-statics="info_pic2" style="height: 753px;">
+        <div id="j-mengban" class="translate-front z-show">
+          <div class="mengban-warn"></div>
+        <canvas style="position: fixed; left: 50%; top: 0px; width: 640px; margin-left: -320px; height: 100%; z-index: 20; background-color: transparent;" width="640" height="753"></canvas></div>
+        <div class="page-con lazy-img" data-src="{$data.f}"><img src="{$data.f}" class="imgHeight" width="100%" hidden="" style="display: inline;"></div>
+      </div>
+      <!-- 封页 end-->
+<php>
+for($i=1;$i<=39;$i++){
+if($data['b'.$i] !=''){
+</php>
+
+    <section data-page="2" class="m-page m-page2 v-page hide" data-id="16269" data-type="info_nomore" style="height: 753px;">
+      <div class="m-img m-img01" data-bk="{$data.b$i}" style="background:url({$data.b$i}) center top no-repeat; background-size:cover;">
+        <img <if condition="$data['t'.$i] neq ''">src="{$data.t$i}"<else/>src="__PUBLIC__/Wap/magzine/images/default_txt.png"</if> width="100%" class="showTxt txt-s3">
+        <div style="position:absolute;bottom:10px;width:100%;color:#eee;"><a <if condition="$data['copyrighturl'] neq ''">href="{$data.copyrighturl}"<else/>href="javascript:void(0);"</if> style="color:#eee;"><p style='text-align:center;'>{$data.copyright}</p></a></>
+      </div>
+    </section>
+<php>
+  }
+}
+</php>
+
+
+</div>
+
+ 
+<script type="text/javascript" src="__PUBLIC__/Wap/magzine/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/magzine/js/easing.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/magzine/js/main.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/magzine/js/lottery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/magzine/js/com.js"></script>
+<script>
+
+
+
+window.onload = function(){
+  changeClose();
+  var lottery = new Lottery($('#j-mengban')[0], $('#r-cover').val(), 'image',$('.imgHeight').width() , $(window).height(), function(){
+       $('#j-mengban').fadeOut(200);
+       changeOpen();
+       $("#car_audio")[0].play();
+  });
+  lottery.init();
+  setTimeout(function(){$('.imgHeight').show();}, 500);
+}
+</script>
+<div style="display:none;" data-role="none" hidden="">
+
+</div>
+
+</body></html>

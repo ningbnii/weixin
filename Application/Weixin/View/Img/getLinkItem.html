@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>获取图文外链</title>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/css/style.css">
+	<link href="__PUBLIC__/Weixin/artDialog/css/ui-dialog.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="col-sm-12">
+                <div class="widget">
+
+                <div class="widget-head">
+                  <div class="pull-left">项目列表</div>
+                  <div class="clearfix"></div>
+                </div>
+
+                  <div class="widget-content">
+
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>标题</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name='list' id='vo'>
+                        <tr>
+                          <td>{$i}</td>
+						  <td>{$vo.title}</td>
+                          <td>
+                              <button class='btn btn-success' id='getLink' data-link="{:C('site_url')}/index.php?m=Wap&c={$module}&a=index&id={$vo.id}&token={token}&wecha_id={wecha_id}">获取链接</button>    
+                          </td>
+                        </tr>
+                        </volist>                               
+                      </tbody>
+                    </table>
+
+                    <div class="widget-foot">
+
+                     
+                        <ul class="pagination pagination-sm pull-right">
+                          <li><a href="#">Prev</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">Next</a></li>
+                        </ul>
+                     
+                      <div class="clearfix"></div> 
+
+                    </div>
+
+                  </div>
+
+                </div>			
+		</div>
+	</div>
+
+<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+<script src="__PUBLIC__/Weixin/artDialog/js/dialog-min.js"></script> <!-- Custom codes -->
+<script>
+	$(function(){
+		$('#getLink').click(function(){
+			var url = $(this).attr('data-link');
+			$(window.parent.document).find('#url').val(url);
+	          var d1 = dialog({
+	            title:'提示信息',
+	            content: '选择成功',
+
+	          }).width(320).height(100).showModal();
+	          setTimeout(function () {
+	              d1.close().remove();
+	          }, 1000);
+		})
+	})
+</script>
+</body>
+</html>

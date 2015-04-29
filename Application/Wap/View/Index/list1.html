@@ -1,0 +1,19 @@
+﻿<extend name='Base/list' />
+
+<block name='body'>
+<div class="row col-xs-12 center-block" id='content'>
+		<ul class='list-unstyled'>
+			<volist name='res' id='vo'>
+				<if condition="$vo['url'] neq ''">
+					<a href="{$vo.url}">
+					<else/>
+					<a href="{:U('Index/content',array('fid'=>$_GET['classid'],'id'=>$vo['id'],'token'=>$vo['token']))}">
+				</if>
+				
+					<li><p class='col-xs-12'>{$vo.title|msubstr=0,15,'utf8'}<span class="glyphicon glyphicon-chevron-right pull-right"></span></p></li>
+				</a>
+			</volist>
+		</ul>		
+
+</div>
+</block>

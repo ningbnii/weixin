@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title>微信部落</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+  <!-- Stylesheets -->
+  <link href="__PUBLIC__/Weixin/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/font-awesome.min.css"> 
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery-ui.css"> 
+  <!-- Calendar -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/fullcalendar.css">
+  <!-- prettyPhoto -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/prettyPhoto.css">  
+  <!-- Star rating -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/rateit.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/bootstrap-datetimepicker.min.css">
+  <!-- CLEditor -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.cleditor.css"> 
+  <!-- Data tables -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.dataTables.css"> 
+  <!-- Bootstrap toggle -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.onoff.css">
+  <!-- Main stylesheet -->
+  <link href="__PUBLIC__/Weixin/css/style.css" rel="stylesheet">
+  <!-- Widgets stylesheet -->
+  <link href="__PUBLIC__/Weixin/css/widgets.css" rel="stylesheet">   
+  
+  <script src="__PUBLIC__/Weixin/js/respond.min.js"></script>
+  <!--[if lt IE 9]>
+  <script src="__PUBLIC__/Weixin/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="__PUBLIC__/Weixin/img/favicon/favicon.png">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+  <script type="text/javascript">
+    KindEditor.ready(function(K){
+      var editor = K.editor({
+        allowFileManager : false,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?t=a',
+      });
+
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+
+      K('#chooseimg1').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#qrcode').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#qrcode').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</head>
+
+<body>
+
+<include file='Public/header'/>
+
+
+
+<!-- Main content starts -->
+
+<div class="content">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
+
+        <!--- Sidebar navigation -->
+        <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
+        <ul id="nav">
+          <!-- Main menu with font awesome icon -->
+          <li class="open"><a href="{:U('Weixin/Index/index')}"><i class="fa fa-home"></i> 管理首页</a>
+            <!-- Sub menu markup 
+            <ul>
+              <li><a href="#">Submenu #1</a></li>
+              <li><a href="#">Submenu #2</a></li>
+              <li><a href="#">Submenu #3</a></li>
+            </ul>-->
+          </li>
+
+        </ul>
+    </div>
+
+    <!-- Sidebar ends -->
+
+        <!-- Main bar -->
+    <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left"><i class="fa fa-home"></i> 管理首页</h2>
+        <div class="clearfix"></div>
+      </div>       
+	<div class="matter">
+        <div class="container">
+			<div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left">编辑公众帐号</div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <br>
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form" method="post" action="">                              
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">公众号名称</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name="wxname" required='required' value='{$data.wxname}'>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">公众号原始ID</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name="wxid" required='required' value='{$data.wxid}'>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">微信号</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name="weixin" required='required' value='{$data.weixin}'>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">APPID</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name='appid' value='{$data.appid}'>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">APPSECRET</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name='appsecret' value='{$data.appsecret}'>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">EncodingAesKey</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control"  type="text" name='encodingaeskey' value="{$data.encodingaeskey}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">头像</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control" name="headerpic" id="pic" value="{$data.headerpic}">
+                                  </div>
+                                  <div class='col-lg-1'>
+                                    <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">二维码</label>
+                                  <div class="col-lg-5">
+                                    <input class="form-control" name="qrcode" id="qrcode" value="{$data.qrcode}">
+                                  </div>
+                                  <div class='col-lg-1'>
+                                    <input type='button' value='选择图片' id='chooseimg1' class='btn btn-success'>
+                                  </div>
+                                </div>
+                                <input type='hidden' name='id' value='{$data.id}'>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"></label>
+                                  <div class="col-lg-5">
+                                    <input type="submit" value="确定" class="btn btn-primary">
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+            
+        </div>
+	</div>
+
+
+
+    </div>
+
+   <!-- Mainbar ends -->
+   <div class="clearfix"></div>
+   
+
+</div>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+            <!-- Copyright info -->
+            <p class="copy">Copyright &copy; 2012 | <a href="#">Your Site</a> </p>
+      </div>
+    </div>
+  </div>
+</footer>   
+
+<!-- Footer ends -->
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
+
+<!-- JS -->
+<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+<script src="__PUBLIC__/Weixin/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+<script src="__PUBLIC__/Weixin/js/jquery-ui.min.js"></script> <!-- jQuery UI -->
+<script src="__PUBLIC__/Weixin/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<script src="__PUBLIC__/Weixin/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
+<script src="__PUBLIC__/Weixin/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
+<script src="__PUBLIC__/Weixin/js/jquery.slimscroll.min.js"></script> <!-- jQuery Slim Scroll -->
+<script src="__PUBLIC__/Weixin/js/jquery.dataTables.min.js"></script> <!-- Data tables -->
+
+
+<script src="__PUBLIC__/Weixin/js/sparklines.js"></script> <!-- Sparklines -->
+<script src="__PUBLIC__/Weixin/js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
+<script src="__PUBLIC__/Weixin/js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
+<script src="__PUBLIC__/Weixin/js/jquery.onoff.min.js"></script> <!-- Bootstrap Toggle -->
+<script src="__PUBLIC__/Weixin/js/filter.js"></script> <!-- Filter for support page -->
+<script src="__PUBLIC__/Weixin/js/custom.js"></script> <!-- Custom codes -->
+
+
+
+</body>
+</html>

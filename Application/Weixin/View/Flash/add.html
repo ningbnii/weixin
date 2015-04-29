@@ -1,0 +1,73 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+		
+    var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#img').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#img').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                                 
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图片描述</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='info'>
+          </div>
+        </div>
+                
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="img" id="img" value="" required=''>
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图片链接地址</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="" type="text" name='url'><br>
+            <p>如需跳转到其他网址，请在这里填写网址(例如：http://baidu.com，记住必须有http://)如果填写了图文详细内容，这里请留空，不要设置</p>
+          </div>
+          <div class="col-lg-3">
+          <a href="#" onclick="addLink('url',0)" class="btn btn-danger">从功能库添加</a><br />
+          </div>
+        </div>
+                                                                 
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

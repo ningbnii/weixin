@@ -1,0 +1,73 @@
+.showapi dt{margin-top:10px;}
+.biaoqing{ position: relative; display:block; height:25px; width:60px;background: url(../img/biaoqing.png) no-repeat left center}
+.biaoqing span{
+	display: block;
+    line-height: 25px;
+    text-indent: 20px;cursor:pointer}
+.biaoqing:hover ul{ display:block}
+.biaoqing ul{
+	display:none; 
+	 background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;box-shadow:0px 1px 3px #ccc;
+    left: 50px;
+    padding: 5px;
+    position: absolute;
+    top: -120px;
+    width: 390px; }
+.biaoqing ul li{
+    border: 1px solid #dfe6f6;
+    height:24px;
+    width: 24px;
+	display:block;
+	padding:2px;float:left; cursor:pointer}
+.biaoqing ul li:hover{ 
+    border: 1px solid #336699;}
+.catemenu div{
+    background: url(images/radio_iphone0.png) no-repeat center top;
+    text-align: center;
+}
+.catemenu div:hover{
+    background: url(images/radio_iphone.png) no-repeat center top;
+}
+.catemenu .active{
+    background: url(images/radio_iphone.png) no-repeat center top;
+}
+#plugmenucolor{
+    width: 36px;
+    height: 36px;
+    background: red;
+    border-radius: 18px;
+    -moz-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+    box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+}
+#plugmenucolor span{
+    width: 28px;
+    height: 28px;
+    display: block;
+    text-align: center;
+    background: url(images/plugmenu.png) no-repeat;
+    background-size: 28px 28px;
+    top:4px;
+    left: 4px;
+    position: relative;
+}
+.tplist li{
+    width:180px;
+    text-align: center;
+    background: url(images/radio_iphone0.png) no-repeat center top;
+}
+.tplist li:hover{
+    background: url(images/radio_iphone.png) no-repeat center top;
+}
+.tplist .active{
+    background: url(images/radio_iphone.png) no-repeat center top;
+}
+#iframe{
+    width:100%;
+    height:100%;
+    margin: 0;
+    padding: 0;
+}
+
+.is_show{font-size: 20px;}

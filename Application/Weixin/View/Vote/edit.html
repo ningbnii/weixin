@@ -1,0 +1,128 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+    
+    
+      var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+    fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+
+      K('#choose_pic').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+      <form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="多个关键词请用空格格开：例如: 美丽 漂亮 好看" type="text" required='required' name='keyword' value="{$data.keyword}">
+          </div>
+        </div>
+               
+        <div class="form-group">
+          <label class="col-lg-2 control-label">标题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='title' value="{$data.title}">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">简介</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='info' required='required'>{$data.info}</textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">注册页面信息</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='reginfo' value="{$data.reginfo}">
+          </div>
+        </div>
+
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">封面图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="pic" id="pic" value="{$data.pic}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_pic' class='btn btn-success'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否开启注册</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="regflag" value="1" <if condition="$data['regflag'] eq 1">checked="checked"</if> type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="regflag" value="2" <if condition="$data['regflag'] eq 2">checked="checked"</if> type="radio">
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="col-lg-2 control-label">投票开始时间</label>
+          <div class="col-lg-5">
+            <div class="input-append input-group dtpicker datetimepicker">
+              <input data-format="yyyy-MM-dd" class="form-control" type="text" name='starttime' value="{$data.starttime|date='Y-m-d',###}">
+              <span class="input-group-addon add-on">
+                <i class="fa fa-calendar" data-time-icon="fa fa-times" data-date-icon="fa fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="" class="col-lg-2 control-label">投票结束时间</label>
+          <div class="col-lg-5">
+            <div class="input-append input-group dtpicker datetimepicker">
+              <input data-format="yyyy-MM-dd" class="form-control" type="text" name='endtime' value="{$data.endtime|date='Y-m-d',###}">
+              <span class="input-group-addon add-on">
+                <i class="fa fa-calendar" data-time-icon="fa fa-times" data-date-icon="fa fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+  
+        <input type='hidden' name='id' value='{$data.id}'>                                                                 
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

@@ -1,0 +1,26 @@
+<div class="banner">
+  <div id="wrapper">
+    <div id="scroller">
+      <ul id="thelist">
+        <volist name="flash" id="so">
+              <li>
+                <p>{$so.info}</p>
+                <a href="<if condition="$so['url'] neq ''">{$so.url}<else/>javascript:void(0);</if>"><img src="{$so.img}" /></a>
+              </li>
+        </volist>
+      </ul>
+    </div>
+  </div>
+  <div id="nav">
+    <div id="prev" onclick="myScroll.scrollToPage('prev', 0,400,3);return false">&larr; prev</div>
+    <ul id="indicator">
+      <volist name="flash" id="so"> <li   
+        <if condition="$i eq 1">class="active"</if>
+        >{$i}
+        </li>
+      </volist>
+    </ul>
+    <div id="next" onclick="myScroll.scrollToPage('next', 0);return false">next &rarr;</div>
+  </div>
+  <div class="clr"></div>
+</div>

@@ -1,0 +1,179 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+		
+		var editor = K.create('textarea[name="info"]', {
+          allowFileManager : true
+        });
+		
+      editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+      
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="多个关键词请用空格格开：例如: 美丽 漂亮 好看" type="text" required='required' name='keyword'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词类型</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="type" value="1" checked="checked" type="radio">
+                 完全匹配 用户输入的和此关键词一样才会触发!
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="type" value="2" type="radio">
+                 包含匹配 (只要用户输入的文字包含本关键词就触发)
+              </label>
+            </div>
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label class="col-lg-2 control-label">标题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='title'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">简介</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='text' required='required'></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">排序</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='sorts' value="">
+          </div>
+        </div> 
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">文章所属分类</label>
+          <div class="col-lg-2">
+            <select class="form-control" name='classid'>
+              <volist name='classify' id='classify'>
+              <option value='{$classify.id}'>
+                <php>
+                  for($i=0;$i<$classify['count']-2;$i++){
+                    echo '&nbsp;';
+                }
+                </php>
+                {$classify.name}
+              </option>
+              </volist>
+            </select>
+          </div>
+        </div>     
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">封面图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="pic" id="pic" value="">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+        </div>
+        
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">详细页是否显示封面</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="showpic" value="1" checked="checked" type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="showpic" value="2" type="radio">
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图文详细页内容</label>
+          <div class="col-lg-8">
+            <textarea style="visibility:hidden;height:400px;" class="form-control col-lg-8" name='info'></textarea>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图文外链地址</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="" type="text" name='url' id='url'><br>
+            <p>如需跳转到其他网址，请在这里填写网址(例如：http://baidu.com，记住必须有http://)如果填写了图文详细内容，这里请留空，不要设置</p>
+          </div>
+          <div class="col-lg-3">
+          <a class="btn btn-danger" id='getLinkBtn'>从功能库添加</a>
+          </div>
+        </div>
+                                                                 
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <input type="submit" class='btn btn-sm btn-success' value='保存'>
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+  <div id="getLink" class='hidden'>
+    <iframe src="{:U('getLink')}" frameborder="0" id="iframe"></iframe>
+  </div>
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+  $(function(){
+    $('#getLinkBtn').click(function(){
+      var content = $('#getLink').html();
+      var d = dialog({
+        title:'选择图文外链',
+        content:content,
+      });
+      d.width($(document.body).width()*0.8);
+      d.height($(document.body).height()*0.4);
+      d.showModal();
+    })
+  })
+</script>
+</block>

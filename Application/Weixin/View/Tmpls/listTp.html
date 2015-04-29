@@ -1,0 +1,127 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+        <div class="container">
+          <a href="{:U('index')}" class="btn btn-success">首页模版选择</a>
+          <a href="{:U('child')}" class="btn btn-success">二级分类模版选择</a>
+          <a href="{:U('listTp')}" class="btn btn-danger">列表模版选择</a>
+          <a href="{:U('contentTp')}" class="btn btn-success">详情页模版选择</a><br><br>
+
+
+              <div class="widget wblack">
+                <!-- Widget title -->
+                <div class="widget-head">
+                  <div class="pull-left">功能描述</div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                  </div>  
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget-content">
+                  <!-- Widget content -->
+                  <div class="padd">
+                      <p>只有二级分类，或者没有二级分类的一级分类才可以选择列表模版</p>
+                  </div>
+
+                  <div class="widget-foot">
+                  </div>
+                </div>
+              </div>
+
+          
+              <div class="widget">
+
+                <div class="widget-head">
+                  <div class="pull-left">列表模版选择</div>
+                  <div class="clearfix"></div>
+                </div>
+
+                  <div class="widget-content">
+
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>分类名称</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name='classifyData' id='vo'>
+                        <tr>
+                          <td>{$i}</td>
+                          <td>{$vo.name}</td>
+                          <td>
+                              <button class="btn btn-success select_tp" data-id='{$vo.id}'>选择模版</button>
+                              <if condition="$vo['list'] neq 0">
+                                <a href="__PUBLIC__/Weixin/images/list/list-{$vo.list}.png" class="prettyPhoto[pp_gal]" id="picshow_{$vo.id}"><img src="__PUBLIC__/Weixin/images/list/list-{$vo.list}.png" width='50'></a>
+                              <else/>
+                                <a href="__PUBLIC__/Weixin/images/list/list-1.png" class="prettyPhoto[pp_gal]" id="picshow_{$vo.id}"><img src="__PUBLIC__/Weixin/images/list/list-1.png" width='50'></a>
+                              </if>
+                              <input type='hidden' name='list' value=''>
+                          </td>
+                        </tr>
+                        </volist>                               
+                      </tbody>
+                    </table>
+
+                    <input type='hidden' id='classify_id' value=''>
+
+                  </div>
+
+              </div>
+          
+          <div id='tps' class='hidden'>
+              <iframe id="iframe" src="{:U('listSelect')}" frameborder='no'></iframe>
+          </div>
+          
+        </div>
+  </div>   
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+
+$(function(){
+  $('.select_tp').click(function(){
+    var _this = $(this);
+    $('#classify_id').val($(this).attr('data-id'));
+
+    var content = $('#tps').html();
+
+    var d = dialog({
+        title: '选择模版',
+        content: content,
+    });
+
+    d.width($(document.body).width()*0.8);
+    d.height($(document.body).height()*0.6);
+    d.addEventListener('close',function(){
+      var _list = _this.siblings('input').val();
+      var id = _this.attr('data-id');
+      $.ajax({
+        url:"{:U('listTp')}",
+        type:"post",
+        data:{id:id,list:_list},
+        success:function(data){
+          var d1 = dialog({
+            title:'提示信息',
+            content: data.info,
+
+          }).width(320).height(100).showModal();
+          setTimeout(function () {
+              d1.close().remove();
+          }, 1000);
+        }
+      });
+    });
+    d.showModal();
+
+  })
+
+})
+
+</script>
+</block>

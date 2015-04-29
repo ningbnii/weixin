@@ -1,0 +1,210 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+		
+		
+      var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+
+      K('#choose_pic').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+      K('#choose_c').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#c').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#c').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+      K('#choose_f').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#f').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#f').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+
+for(var i=1;i<=10;i++){
+      K('#choose_b'+i).click(function(){
+        var id = '#' + K(this).attr('data-id');
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K(id).val(),
+            clickFn : function(url,title,width,height,border,align){
+              K(id).val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+
+      K('#choose_t'+i).click(function(){
+        var id = '#' + K(this).attr('data-id');
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K(id).val(),
+            clickFn : function(url,title,width,height,border,align){
+              K(id).val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+}
+
+  K('#choose_bgmusic').click(function() {
+    editor.loadPlugin('insertmedia', function() {
+        editor.plugin.fileDialog({
+            fileUrl : K('#bgmusic').val(),
+            clickFn : function(url, title) {
+                K('#bgmusic').val(url);
+                editor.hideDialog();
+            }
+        });
+    });
+});
+
+
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="多个关键词请用空格格开：例如: 美丽 漂亮 好看" type="text" required='required' name='keyword' value='{$data.keyword}'>
+          </div>
+        </div>
+               
+        <div class="form-group">
+          <label class="col-lg-2 control-label">标题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='title' value='{$data.title}'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">简介</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='info' required='required'>{$data.info}</textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">底部版权</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='copyright' value='{$data.copyright}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">底部版权连接</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='copyrighturl' value='{$data.copyrighturl}'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">封面图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="pic" id="pic" value="{$data.pic}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_pic' class='btn btn-success'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">背景音乐</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="bgmusic" id="bgmusic" value="{$data.bgmusic}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择文件' id='choose_bgmusic' class='btn btn-success'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">首页遮盖图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="c" id="c" value="{$data.c}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_c' class='btn btn-success'>
+          </div>
+        </div> 
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">首页图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="f" id="f" value="{$data.f}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_f' class='btn btn-success'>
+          </div>
+        </div>
+<php>
+for($i=1;$i<=10;$i++){
+</php>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">背景<php>echo $i;</php></label>
+          <div class="col-lg-5">
+            <input class="form-control" name="b<php>echo $i;</php>" id="b<php>echo $i;</php>" value="{$data.b$i}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_b<php>echo $i;</php>' class='btn btn-success' data-id="b<php>echo $i;</php>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">文字<php>echo $i;</php></label>
+          <div class="col-lg-5">
+            <input class="form-control" name="t<php>echo $i;</php>" id="t<php>echo $i;</php>" value="{$data.t$i}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_t<php>echo $i;</php>' class='btn btn-success' data-id="t<php>echo $i;</php>">
+          </div>
+        </div>
+<php>  
+}
+</php>        
+        <input type='hidden' name='id' value='{$data.id}'>                                                         
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

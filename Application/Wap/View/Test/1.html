@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <meta name='format-detection' content='telephone=yes'>
+  <title>未名湖畔，约吗？</title>
+  <link rel="stylesheet" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Wap/css/swiper.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Wap/css/animate.css">
+  <script src="__PUBLIC__/Wap/js/audio.js" type="text/javascript"></script>
+  <style>
+    .btn_music {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: url('__PUBLIC__/Wap/images/play.png') no-repeat center center;
+  background-size: 100% auto;
+  position: absolute;
+  z-index: 100;
+  left: 15px;
+  top: 20px;
+  }
+  .btn_music.on {
+      background-image: url("__PUBLIC__/Wap/images/stop.png");
+  }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-slide{
+      text-align: center;
+      width: 100%;
+      background:url(__PUBLIC__/Wap/images/fenhong/bg.jpg) no-repeat;
+      background-size: 100% 100%;  
+    }
+    img{
+      visibility: hidden;
+    }
+
+    /* slide1 */
+    .slide1{
+      background:url(__PUBLIC__/Wap/images/fenhong/1.jpg) no-repeat;
+      background-size: 100% 100%;    
+    }
+
+    /* slide2 */
+    #p23{
+      z-index: 10;
+    }
+
+    /* slide3 */
+    #p30,#p31,#p32,#p33,#p34,#p35,#p36,#p37,#p62,#p64,#p65,#p66,#p72,#p74,#p82,#p92,#p93,#p95,#p102,#p103,#p104,#p112,#p113,#p121,#p122,#p123,#p21,#p22,#p23,#p24,#p25,#p40,#p41,#p42,#p43,#p44,#p45,#p91,#p94,#p95,#p96{
+      position: absolute;
+    }
+    #p32{
+      top: 20%;
+    }
+    #p34{
+      top:10%;
+    }
+    #p33{
+      top: 44%;
+    }
+    #p35{
+      top: 70%;
+    }
+    #p30,#p37{
+      visibility: visible;
+    }
+    #p37{
+      z-index: 30;
+    }
+
+    /* slide4 */
+    #p41{
+      z-index: 40;
+    }
+
+    /* slide6 */
+    #p62{
+      top: 20%;
+    }
+    #p64{
+      top: 70%;
+    }
+    #p66{
+      top: 45%;
+      right: 0;
+      width: 20%;
+      visibility: hidden;
+    }
+    
+    /* slide7 */
+    #p74{
+      top: 0;
+    }
+    /* slide8 */
+    #p82{
+      top: 70%;
+    }
+    /* slide9 */
+
+    /* slide10 */
+    .slide10{
+      background: url(__PUBLIC__/Wap/images/fenhong/10/10-1.jpg) no-repeat;
+      background-size: 100% 100%;
+    }
+
+    /* slide11 */
+
+    .slide11{
+      background: url(__PUBLIC__/Wap/images/fenhong/11/11-1.jpg) no-repeat;
+      background-size: 100% 100%;
+    }
+    #p112{
+      opacity: 0;
+    }    
+    #p113{
+      opacity: 0;
+      top: -10%;
+    }
+    .bottom{
+      position: absolute;
+      width: 30px;
+      bottom: 2%;
+      left: 46%;
+      visibility: visible;
+    }
+
+    /* slide12 */
+    #p122{
+      z-index: 10;
+      visibility: visible;
+    }
+    #p123{
+      z-index: 20;
+      visibility: visible;
+
+    }
+    .slide12{
+      background: url(__PUBLIC__/Wap/images/fenhong/1/1-1.jpg);
+      background-size: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <img src="__PUBLIC__/Wap/images/fenhong/portrait.jpg" alt="" style='width:0px;height:0px;position:absolute;visibility:visible;'>
+  <script type="text/javascript">
+// 两秒后模拟点击
+setTimeout(function() {
+    // IE
+    if(document.all) {
+        document.getElementById("playbox").click();
+    }
+    // 其它浏览器
+    else {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("playbox").dispatchEvent(e);
+    }
+}, 2000);
+</script>
+<span id="playbox" class="btn_music" onclick="playbox.init(this).play();">
+<audio src="__PUBLIC__/Wap/images/fenhong/fenhong.mp3" loop="" id="audio"></audio>
+</span>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+
+
+      <div class="swiper-slide slide1">
+        <div class="container-fluid">
+          <div class="row">
+
+            <img src="__PUBLIC__/Wap/images/bottom.png" alt="" class='img-responsive bottom'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide2">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/2/2-1.jpg" alt="" class="img-responsive" id='p21'>
+            <img src="__PUBLIC__/Wap/images/fenhong/2/2-2.png" alt="" class="img-responsive" id='p22'>
+            <img src="__PUBLIC__/Wap/images/fenhong/2/2-3.png" alt="" class="img-responsive" id='p23'>
+            <img src="__PUBLIC__/Wap/images/fenhong/2/2-4.png" alt="" class="img-responsive" id='p24'>
+            <img src="__PUBLIC__/Wap/images/fenhong/2/2-5.png" alt="" class="img-responsive" id='p25'>
+          </div>
+        </div>           
+      </div>
+      <div class="swiper-slide slide3">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3.jpg" alt="" class="img-responsive" id='p30'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-1.png" alt="" class="img-responsive" id='p31'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-2.png" alt="" class="img-responsive" id='p32'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-3.png" alt="" class="img-responsive" id='p33'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-4.png" alt="" class="img-responsive" id='p34'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-5.png" alt="" class="img-responsive" id='p35'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-6.png" alt="" class="img-responsive" id='p36'>
+            <img src="__PUBLIC__/Wap/images/fenhong/3/3-7.png" alt="" class="img-responsive" id='p37'>
+          </div>           
+        </div>       
+      </div>
+      <div class="swiper-slide slide4">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/4/5.jpg" alt="" class="img-responsive" id='p40'>
+            <img src="__PUBLIC__/Wap/images/fenhong/4/6-1.png" alt="" class="img-responsive" id='p41'>
+            <img src="__PUBLIC__/Wap/images/fenhong/4/6-2.png" alt="" class="img-responsive" id='p42'>
+            <img src="__PUBLIC__/Wap/images/fenhong/4/6-3.png" alt="" class="img-responsive" id='p43'>
+            <img src="__PUBLIC__/Wap/images/fenhong/4/6-4.png" alt="" class="img-responsive" id='p44'>
+            <img src="__PUBLIC__/Wap/images/fenhong/4/6-5.png" alt="" class="img-responsive" id='p45'>            
+          </div>           
+        </div>       
+      </div>
+
+      <div class="swiper-slide slide7">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/7/7-2.jpg" alt="" class="img-responsive" id='p72'>
+            <img src="__PUBLIC__/Wap/images/fenhong/7/7-3.png" alt="" class="img-responsive" id='p73'>
+            <img src="__PUBLIC__/Wap/images/fenhong/7/7-4.png" alt="" class="img-responsive" id='p74'>
+          </div>           
+        </div>       
+      </div>
+      <div class="swiper-slide slide8">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/8/8.jpg" alt="" class="img-responsive" id='p81'>
+          </div>           
+        </div>       
+      </div>
+      <div class="swiper-slide slide9">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/9/9-1.jpg" alt="" class="img-responsive" id='p91'>
+            <img src="__PUBLIC__/Wap/images/fenhong/9/9-4.png" alt="" class="img-responsive" id='p94'>
+            <img src="__PUBLIC__/Wap/images/fenhong/9/9-5.png" alt="" class="img-responsive" id='p95'>
+            <img src="__PUBLIC__/Wap/images/fenhong/9/9-6.png" alt="" class="img-responsive" id='p96'>
+          </div>           
+        </div>       
+      </div>
+      <div class="swiper-slide slide10">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/10/10-2.png" alt="" class="img-responsive" id='p102'>
+            <img src="__PUBLIC__/Wap/images/fenhong/10/10-3.png" alt="" class="img-responsive" id='p103'>
+            <img src="__PUBLIC__/Wap/images/fenhong/10/10-4.png" alt="" class="img-responsive" id='p104'>
+          </div>           
+        </div>       
+      </div>
+      <div class="swiper-slide slide11">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/fenhong/11/11-2.png" alt="" class="img-responsive" id='p112'>
+            <img src="__PUBLIC__/Wap/images/fenhong/11/11-3.png" alt="" class="img-responsive" id='p113'>
+          </div>           
+        </div>       
+      </div>
+    </div>
+  </div>
+
+  <script src='__PUBLIC__/Wap/js/swiper.min.js'></script>
+  <script src='__PUBLIC__/Wap/js/jquery-1.10.1.min.js'></script>
+  <script src='__PUBLIC__/Wap/js/jquery.eraser.js'></script>
+<script type="text/javascript">
+$(function(){
+  $('.swiper-container').css({
+    height: window.innerHeight
+  });
+  $('img:not(.bottom,#p66,#p113)').css('width',$(window).width());
+  $('#p123').css('width',$(window).width());
+
+  $('#p21,#p22,#p23,#p24,#p25').css({
+    height: window.innerHeight,
+  });
+  $('#p31,#p32,#p34,#p36,#p40,#p41,#p42,#p43,#p44,#p45,#p74').css({
+    height: window.innerHeight,
+  });
+  $('#p33').css({
+    height: window.innerHeight*0.3,
+  });
+  $('#p35').css({
+    height: window.innerHeight*0.3,
+  });
+  $('#p61').css({
+    height: window.innerHeight*0.45,
+  });
+  $('#p63').css({
+    height: window.innerHeight*0.35,
+  });
+  $('#p73,#p72').css({
+    height: window.innerHeight,
+  });
+  $('#p81').css({
+    height: window.innerHeight,
+  });
+  $('#p94,#p91,#p95,#p96').css({
+    height: window.innerHeight,
+  });
+
+  $('#p104,#p102,#p103').css({
+    height: window.innerHeight,
+  });
+
+
+
+  /* swiper */
+  var mySwiper = new Swiper('.swiper-container',{
+    // initialSlide:8,
+    loop:true,
+    lazyLoading:true,
+    direction:'vertical',
+    onSlideChangeEnd:function(swiper){
+      eval('slide' + swiper.activeIndex)();
+    },
+
+  });
+
+
+
+})
+
+  /* 更换动画效果 */
+  function change_animation(bindname,animation1,animation2,time){
+    setTimeout(function(){
+      bindname.removeClass(animation1).addClass(animation2);
+    },time);
+  }
+
+
+  function slide0(){
+
+      
+  }
+
+  function slide1(){}
+
+  function slide2(){
+    var _p21 = $('#p21');
+    var _p22 = $('#p22');
+    _p21.css({visibility:'visible'});
+    _p21.addClass('animated zoomIn');
+    _p22.css({visibility:'visible'});
+    _p22.addClass('animated zoomIn');
+    setTimeout(function(){
+      $('#p23').css({visibility:'visible'});
+      $('#p23').addClass('animated zoomIn');      
+    },500);
+    setTimeout(function(){
+      $('#p24').css({visibility:'visible'});
+      $('#p24').addClass('animated zoomIn');
+    },1000);
+    setTimeout(function(){
+      $('#p25').css({visibility:'visible'});
+      $('#p25').addClass('animated zoomIn');
+    },1500);
+  }
+
+  function slide3(){
+    setTimeout(function(){
+      $('#p31').css({visibility:'visible'});
+      $('#p31').addClass('animated zoomIn');      
+    },500);
+    setTimeout(function(){
+      $('#p32').css({visibility:'visible'});
+      $('#p32').addClass('animated zoomIn');      
+    },1000);
+    setTimeout(function(){
+      $('#p33').css({visibility:'visible'});
+      $('#p33').addClass('animated zoomIn');      
+    },1500);
+    setTimeout(function(){
+      $('#p34').css({visibility:'visible'});
+      $('#p34').addClass('animated zoomIn');      
+    },2000);
+    setTimeout(function(){
+      $('#p35').css({visibility:'visible'});
+      $('#p35').addClass('animated zoomIn');      
+    },2500);
+    setTimeout(function(){
+      $('#p36').css({visibility:'visible'});
+      $('#p36').addClass('animated zoomIn');      
+    },3000);
+
+
+
+  }
+
+  function slide4(){
+      $('#p40').css({visibility:'visible'});
+      $('#p40').addClass('animated zoomIn');
+    setTimeout(function(){
+      $('#p41').css({visibility:'visible'});
+      $('#p41').addClass('animated zoomIn');      
+    },500);
+    setTimeout(function(){
+      $('#p42').css({visibility:'visible'});
+      $('#p42').addClass('animated zoomIn');      
+    },1000);
+    setTimeout(function(){
+      $('#p43').css({visibility:'visible'});
+      $('#p43').addClass('animated zoomIn');      
+    },1500);
+    setTimeout(function(){
+      $('#p44').css({visibility:'visible'});
+      $('#p44').addClass('animated zoomIn');      
+    },2000);
+    setTimeout(function(){
+      $('#p45').css({visibility:'visible'});
+      $('#p45').addClass('animated zoomIn');      
+    },2500);       
+  }
+
+
+
+  function slide5(){
+    $('#p72').css({visibility:'visible'});
+    $('#p72').addClass('animated lightSpeedIn');
+
+    $('#p73').css({visibility:'visible'});
+    $('#p73').addClass('animated zoomIn');
+
+    $('#p74').css({visibility:'visible'});
+    $('#p74').addClass('animated zoomIn');
+  }
+
+  function slide6(){
+    $('#p81').css({visibility:'visible'});
+    $('#p81').addClass('animated lightSpeedIn');
+
+    $('#p82').css({visibility:'visible'});
+    $('#p82').addClass('animated zoomIn');
+  }
+
+  function slide7(){
+    $('#p91').css({visibility:'visible'});
+    $('#p91').addClass('animated lightSpeedIn');
+
+    $('#p94').css({visibility:'visible'});
+    $('#p94').addClass('animated zoomIn');
+
+    $('#p95').css({visibility:'visible'});
+    $('#p95').addClass('animated zoomIn');
+
+    $('#p96').css({visibility:'visible'});
+    $('#p96').addClass('animated zoomIn');
+  }
+
+  function slide8(){
+    $('#p102').css({visibility:'visible'});
+    $('#p102').addClass('animated lightSpeedIn');
+
+    $('#p103').css({visibility:'visible'});
+    $('#p103').addClass('animated zoomIn');
+
+    $('#p104').css({visibility:'visible'});
+    $('#p104').addClass('animated zoomIn');
+  }
+
+  function slide9(){
+    $('#p112,#p113').css({visibility:'visible'});
+    $('#p112,#p113').animate({opacity:1},2000);
+  }
+  function slide10(){}
+</script>
+</body>
+</html>

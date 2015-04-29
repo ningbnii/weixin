@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>《精品购物指南》闹元宵，大白帮你DUANG~一年好运势！</title>
+	<meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+	<meta name='apple-mobile-web-app-capable' content='yes'>
+	<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+	<meta name='format-detection' content='telephone=yes'>
+	<script src='__PUBLIC__/Wap/js/lufylegend-1.9.7.min.js'></script>
+	<script src="__PUBLIC__/Wap/js/audio.js" type="text/javascript"></script>
+	<style>
+	body,div,canvas{margin: 0;padding: 0;}
+	.btn_music {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background: url('__PUBLIC__/Wap/images/play.png') no-repeat center center;
+	background-size: 100% auto;
+	position: absolute;
+	z-index: 100;
+	left: 15px;
+	top: 20px;
+	}
+	.btn_music.on {
+	    background-image: url("__PUBLIC__/Wap/images/stop.png");
+	}
+
+	</style>
+</head>
+<body>
+
+<img src="__PUBLIC__/Wap/images/yuanxiao/portrait.jpg" alt="" style='width:0px;height:0px;position:absolute;'>
+<script type="text/javascript">
+// 两秒后模拟点击
+setTimeout(function() {
+    // IE
+    if(document.all) {
+        document.getElementById("playbox").click();
+    }
+    // 其它浏览器
+    else {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("playbox").dispatchEvent(e);
+    }
+}, 2000);
+</script>
+<span id="playbox" class="btn_music" onclick="playbox.init(this).play();">
+<audio src="__PUBLIC__/Wap/images/yuanxiao/music.mp3" loop="" id="audio"></audio>
+</span>
+
+
+	<div id="mylegend">loading...</div>
+	<script type="text/javascript">
+		//屏幕自适应
+		function resizeCanvas(){
+			LGlobal.stageScale = LStageScaleMode.EXACT_FIT;
+			LSystem.screen(LStage.FULL_SCREEN);
+		}
+
+		if(LGlobal.canTouch){
+			resizeCanvas();
+		}
+
+		var width = 640;
+		var height = window.innerHeight*width/window.innerWidth;
+		init(150,'mylegend',width,height,main);
+
+		//初始化
+		var loadingLayer,backLayer;
+		var bitmapp1_circle;
+		var imglist = {};
+		var imgData = new Array(
+			{name:'p11',path:'__PUBLIC__/Wap/images/yuanxiao/p11.png'},
+			{name:'p12',path:'__PUBLIC__/Wap/images/yuanxiao/p12.png'},
+			{name:'p13',path:'__PUBLIC__/Wap/images/yuanxiao/p13.png'},
+			{name:'p14',path:'__PUBLIC__/Wap/images/yuanxiao/p14.png'},
+			{name:'p21',path:'__PUBLIC__/Wap/images/yuanxiao/p21.jpg'},
+			{name:'p23',path:'__PUBLIC__/Wap/images/yuanxiao/p23.png'},
+			{name:'p24',path:'__PUBLIC__/Wap/images/yuanxiao/p24.png'},
+			{name:'p25',path:'__PUBLIC__/Wap/images/yuanxiao/p25.png'},
+			{name:'p26',path:'__PUBLIC__/Wap/images/yuanxiao/p26.png'},
+			{name:'p27',path:'__PUBLIC__/Wap/images/yuanxiao/p27.png'},
+			{name:'p31',path:'__PUBLIC__/Wap/images/yuanxiao/p31.png'},
+			{name:'p32',path:'__PUBLIC__/Wap/images/yuanxiao/p32.png'},
+			{name:'p33',path:'__PUBLIC__/Wap/images/yuanxiao/p33.png'},
+			{name:'p34',path:'__PUBLIC__/Wap/images/yuanxiao/p34.png'},
+			{name:'p35',path:'__PUBLIC__/Wap/images/yuanxiao/p35.png'},
+			{name:'p36',path:'__PUBLIC__/Wap/images/yuanxiao/p36.png'},
+			{name:'p37',path:'__PUBLIC__/Wap/images/yuanxiao/p37.png'},
+			{name:'p41',path:'__PUBLIC__/Wap/images/yuanxiao/p41.png'},
+			{name:'p42',path:'__PUBLIC__/Wap/images/yuanxiao/p42.png'},
+			{name:'p43',path:'__PUBLIC__/Wap/images/yuanxiao/p43.png'},
+			{name:'p44',path:'__PUBLIC__/Wap/images/yuanxiao/p44.png'}
+
+			);
+
+		function main(){
+			//游戏主层初始化
+			backLayer = new LSprite();
+			//在主层上绘制黑色背景
+			backLayer.graphics.drawRect(1,'#000000',[0,0,width,height],true,'#000000');
+			addChild(backLayer);
+			//进度条读取层初始化
+			loadingLayer = new LoadingSample2(50);
+			backLayer.addChild(loadingLayer);
+			LLoadManage.load(
+				imgData,
+				function(progress){
+					loadingLayer.setProgress(progress);
+				},gameInit
+				);
+
+
+		}
+
+		//读取完所有图片，进行画面的初始化工作
+		function gameInit(result){
+			//取得图片读取结果
+			imglist = result;
+			//移除进度条层
+			backLayer.removeChild(loadingLayer);
+			loadingLayer = null;
+			//背景层
+			p11Layer = new LSprite();
+			var bitmapDataP11 = new LBitmapData(imglist["p11"]);
+			var bitmapP11 = new LBitmap(bitmapDataP11);
+			p11Layer.addChild(bitmapP11);
+			backLayer.addChild(p11Layer);
+
+			setTimeout(function(){
+				p12Layer = new LSprite();
+				var bitmapDataP12 = new LBitmapData(imglist['p12']);
+				var bitmapP12 = new LBitmap(bitmapDataP12);
+				bitmapP12.x = (width - bitmapP12.getWidth())/2;
+				bitmapP12.y = 200;
+				p12Layer.addChild(bitmapP12);
+				backLayer.addChild(p12Layer);
+			},500);
+
+			setTimeout(function(){
+				p13Layer = new LSprite();
+				var bitmapDataP13 = new LBitmapData(imglist['p13']);
+				var bitmapP13 = new LBitmap(bitmapDataP13);
+				bitmapP13.x = (width - bitmapP13.getWidth())/2;
+				bitmapP13.y = 610;
+				p13Layer.addChild(bitmapP13);
+				backLayer.addChild(p13Layer);				
+			},500);
+
+
+			setTimeout(function(){
+				p14Layer = new LSprite();
+				
+				var list3 = LGlobal.divideCoordinate(1404,471,1,3);
+				var data = new LBitmapData(imglist['p14'],0,0,468,471);
+				player = new LAnimationTimeline(data,list3);
+				p14Layer.addChild(player);
+
+				p14Layer.x = (width - p14Layer.getWidth())/2;
+				p14Layer.y = 120;
+				backLayer.addChild(p14Layer);
+			},1000);
+
+
+			backLayer.addEventListener(LMouseEvent.MOUSE_UP,function(event){
+				startP2();
+			});
+			p12Layer.addEventListener(LMouseEvent.MOUSE_UP,function(event){
+				startP2();
+			});
+			p13Layer.addEventListener(LMouseEvent.MOUSE_UP,function(event){
+				startP2();
+			});
+			p14Layer.addEventListener(LMouseEvent.MOUSE_UP,function(event){
+				startP2();
+			});
+		}
+
+		function startP2(){
+			backLayer.die();
+			backLayer.removeAllChild();
+
+				p21Layer = new LSprite();
+				
+				var list2 = LGlobal.divideCoordinate(1280,1136,1,2);
+				var data2 = new LBitmapData(imglist['p21'],0,0,640,1136);
+				player2 = new LAnimationTimeline(data2,list2);
+				p21Layer.addChild(player2);
+
+				backLayer.addChild(p21Layer);
+
+
+			setTimeout(function(){
+				p23Layer = new LSprite();
+				var bitmapDataP23 = new LBitmapData(imglist['p23']);
+				var bitmapP23 = new LBitmap(bitmapDataP23);
+				bitmapP23.x = (width - bitmapP23.getWidth())/2;
+				bitmapP23.y = height - bitmapP23.getHeight();
+				p23Layer.addChild(bitmapP23);
+				backLayer.addChild(p23Layer);
+			},500);
+
+			setTimeout(function(){
+				p24Layer = new LSprite();
+				var bitmapDataP24 = new LBitmapData(imglist['p24']);
+				var bitmapP24 = new LBitmap(bitmapDataP24);
+				bitmapP24.x = (width - bitmapP24.getWidth())/2;
+				bitmapP24.y = 100;
+				p24Layer.addChild(bitmapP24);
+				backLayer.addChild(p24Layer);
+			},500);
+
+
+			p25Layer = new LSprite();
+			var bitmapDataP25 = new LBitmapData(imglist['p25']);
+			var bitmapP25 = new LBitmap(bitmapDataP25);
+			bitmapP25.x = (width - bitmapP25.getWidth())/2 + 100;
+			bitmapP25.y = 400;
+			p25Layer.addChild(bitmapP25);
+			backLayer.addChild(p25Layer);
+
+			
+			var bitmapDataP26 = new LBitmapData(imglist['p26'],0,0,280,274);
+			var list1 = LGlobal.divideCoordinate(3640,1096,4,13);
+			p26Layer = new LSprite();
+			backLayer.addChild(p26Layer);
+
+			p26Layer.x = 285;
+			p26Layer.y = 400;
+			anime3 = new LAnimation(p26Layer,bitmapDataP26,list1);
+			p26Layer.addEventListener(LEvent.ENTER_FRAME,onframe);
+
+			p27Layer = new LSprite();
+			var bitmapDataP27 = new LBitmapData(imglist['p27']);
+			var bitmapP27 = new LBitmap(bitmapDataP27);
+			bitmapP27.x = (width - bitmapP27.getWidth())/2 + 100;
+			bitmapP27.y = 400;
+			p27Layer.addChild(bitmapP27);
+			backLayer.addChild(p27Layer);
+
+			p27Layer.addEventListener(LMouseEvent.MOUSE_DOWN,function(event){
+				setTimeout(startP3,2000);
+			});
+
+
+
+		}
+
+		function startP3(){
+			backLayer.die();
+			backLayer.removeAllChild();
+
+
+			p31Layer = new LSprite();
+			var bitmapDataP31 = new LBitmapData(imglist['p31']);
+			var bitmapP31 = new LBitmap(bitmapDataP31);
+			p31Layer.addChild(bitmapP31);
+			backLayer.addChild(p31Layer);
+
+
+				TextLayer = new LSprite();
+				var textName = new Array('p32','p33','p34','p35','p36','p37');
+
+				var bitmapDataText = new LBitmapData(imglist[textName[Math.round(Math.random() * 10)%6]]);
+				// var bitmapDataText = new LBitmapData(imglist['p32']);
+				var bitmapText = new LBitmap(bitmapDataText);
+				bitmapText.x = (width - bitmapText.getWidth())/2;
+				bitmapText.y = height - bitmapText.getHeight()*2;
+				// TextLayer.addChild(bitmapText);
+				backLayer.addChild(bitmapText);
+
+
+
+			p31Layer.addEventListener(LMouseEvent.MOUSE_DOWN,function(event){
+				startP4();
+			});
+			TextLayer.addEventListener(LMouseEvent.MOUSE_DOWN,function(event){
+				startP4();
+			});
+
+		}
+
+		function startP4(){
+			backLayer.die();
+			backLayer.removeAllChild();
+
+			p41Layer = new LSprite();
+			var bitmapDataP41 = new LBitmapData(imglist['p41']);
+			var bitmapP41 = new LBitmap(bitmapDataP41);
+			p41Layer.addChild(bitmapP41);
+			backLayer.addChild(p41Layer);
+
+			p42Layer = new LSprite();
+			var bitmapDataP42 = new LBitmapData(imglist['p42']);
+			var bitmapP42 = new LBitmap(bitmapDataP42);
+			bitmapP42.x = (width - bitmapP42.getWidth())/2 - 100;
+			bitmapP42.y = 200;
+			p42Layer.addChild(bitmapP42);
+			backLayer.addChild(p42Layer);
+
+
+			p43Layer = new LSprite();
+			var bitmapDataP43 = new LBitmapData(imglist['p43']);
+			var bitmapP43 = new LBitmap(bitmapDataP43);
+			bitmapP43.x = (width - bitmapP43.getWidth())/2;
+			bitmapP43.y = 300;
+			p43Layer.addChild(bitmapP43);
+			backLayer.addChild(p43Layer);
+
+
+			p44Layer = new LSprite();
+			
+			var list4 = LGlobal.divideCoordinate(1920,1136,1,3);
+			var data4 = new LBitmapData(imglist['p44'],0,0,640,1136);
+			player4 = new LAnimationTimeline(data4,list4);
+			p44Layer.addChild(player4);
+
+			p44Layer.x = (width - p44Layer.getWidth())/2;
+			p44Layer.y = height - p44Layer.getHeight() + 100;
+			backLayer.addChild(p44Layer);
+
+
+/*			p44Layer = new LSprite();
+			var bitmapDataP44 = new LBitmapData(imglist['p44']);
+			var bitmapP44 = new LBitmap(bitmapDataP44);
+			bitmapP44.x = (width - bitmapP44.getWidth())/2;
+			bitmapP44.y = height - bitmapP44.getHeight();
+			p44Layer.addChild(bitmapP44) + 30;
+			backLayer.addChild(p44Layer);
+
+			setTimeout(function(){
+				bitmapP44.y = height - bitmapP44.getHeight() + 10;
+			},500);
+			setTimeout(function(){
+				bitmapP44.y = height - bitmapP44.getHeight() - 10;
+			},500);*/
+
+		}
+
+		function onframe(){
+			anime3.onframe();
+		}
+
+
+
+
+	</script>
+</body>
+</html>

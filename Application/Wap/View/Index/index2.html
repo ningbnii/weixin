@@ -1,0 +1,18 @@
+<extend name='Base/common' />
+
+<block name='body'>
+<div id="todayList">
+  <ul class="todayList">
+    <volist name="info" id="vo">
+      <li class="only2"> <a href="<if condition="$vo['url'] eq ''">{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+        <else/>
+        {$vo.url|htmlspecialchars_decode}
+        </if>
+        ">
+        <h2 class="menutitle">{$vo.name}</h2>
+        <span class="icon">&nbsp;</span> </a> </li>
+    </volist>
+  </ul>
+</div>
+
+</block>

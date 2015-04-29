@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>投票</title>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		body{background: #f2f2f2;font-family: microsoft yahei;}
+		.box{margin-bottom: 20px;}
+		.item{border-radius: 5px;background: #fff;box-shadow: 0 1px 5px rgba(0,0,0,0.5);}
+		.item h1{color: #000;font-size: 18px;padding-top:10px;}
+		.item .date{font-size: 12px;color:#979797;}
+		.item .blue{color:#51a8bb;}
+		.vote-btn{margin-top: 10px;margin-bottom: 10px;}
+		.line{border-top:1px dashed #b3b3b3;}
+		.item .click{margin-top: 10px;padding-bottom: 10px;color: #979797;}
+	</style>
+</head>
+<body>
+	<div class="container-fluid box">
+		<volist name='list' id='vo'>
+		<div class="col-sm-12 item">
+			<h1>{$vo.title}</h1>
+			<div class="row date">
+				<div class="col-xs-4"><p>{$vo.createtime|date='Y/m/d',###}</p></div>
+				<div class="col-xs-8"><p>来源：<font class='blue'>{$vo.name}</font></p></div>				
+			</div>
+			<div class="row">
+				<img src="{$vo.pic}" alt="" class='img-responsive'>
+			</div>
+			
+			<a href="{:U('detail',array('id'=>$vo['id'],'pid'=>$_GET['id'],'token'=>$_GET['token']))}"><button class="btn btn-primary center-block vote-btn">进入投票</button></a>
+			<div class="row line"></div>
+			<div class="row click">
+				<div class="col-xs-4"><span class="glyphicon glyphicon-eye-open"></span> {$vo.click}</div>
+				<div class="col-xs-4 pull-right">{$vo.count}参与</div>
+			</div>
+		</div>
+		</volist>
+	</div>
+
+</body>
+</html>

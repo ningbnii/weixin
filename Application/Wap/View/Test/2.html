@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <meta name='format-detection' content='telephone=yes'>
+  <title>这么多年原来都睡错了？</title>
+  <link rel="stylesheet" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Wap/css/swiper.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Wap/css/animate.css">
+  <link rel="stylesheet" href="__PUBLIC__/Wap/css/style.css?15">
+  <script src="__PUBLIC__/Wap/js/audio.js" type="text/javascript"></script>
+  <style>
+  .btn_music {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: url('__PUBLIC__/Wap/images/play.png') no-repeat center center;
+  background-size: 100% auto;
+  position: absolute;
+  z-index: 100;
+  left: 15px;
+  top: 20px;
+  }
+  .btn_music.on {
+      background-image: url("__PUBLIC__/Wap/images/stop.png");
+  }
+  </style>
+
+</head>
+<body>
+<img src="__PUBLIC__/Wap/images/sleep/portrait.jpg" alt="" style='width:0px;height:0px;position:absolute;'>
+<script type="text/javascript">
+// 两秒后模拟点击
+setTimeout(function() {
+    // IE
+    if(document.all) {
+        document.getElementById("playbox").click();
+    }
+    // 其它浏览器
+    else {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("playbox").dispatchEvent(e);
+    }
+}, 2000);
+</script>
+<span id="playbox" class="btn_music" onclick="playbox.init(this).play();">
+<audio src="__PUBLIC__/Wap/images/sleep/wechatParticle Light.mp3" loop="" id="audio"></audio>
+</span>
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide slide0 swiper-no-swiping">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P1/8.png" alt="" class='img-responsive' id='p18'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/12.png" alt="" class='img-responsive' id='p112'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/13.png" alt="" class='img-responsive' id='p113'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/14.png" alt="" class='img-responsive' id='p114'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/9.png" alt="" class='img-responsive' id='p19'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/5.png" alt="" class='img-responsive' id='p15'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/1.png" alt="" class='img-responsive' id='p11'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/2.png" alt="" class='img-responsive' id='p12'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/3.png" alt="" class='img-responsive' id='p13'>
+            <img src="__PUBLIC__/Wap/images/sleep/P1/4.png" alt="" class='img-responsive' id='p14'>
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide1">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P2/9.png" alt="" class='img-responsive' id='p29'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/5.png" alt="" class='img-responsive' id='p25'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/6.png" alt="" class='img-responsive' id='p26'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/7.png" alt="" class='img-responsive' id='p27'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/8.png" alt="" class='img-responsive' id='p28'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/10.png" alt="" class='img-responsive' id='p210'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/11.png" alt="" class='img-responsive' id='p211'>
+            <img src="__PUBLIC__/Wap/images/sleep/P2/12.png" alt="" class='img-responsive' id='p212'>
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide2">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P3/7.png" alt="" class='img-responsive' id='p37'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P3/5.png" alt="" class='img-responsive' id='p35'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P3/8.png" alt="" class='img-responsive' id='p38'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P3/9.png" alt="" class='img-responsive' id='p39'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide3">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P4/7.png" alt="" class='img-responsive' id='p47'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/5.png" alt="" class='img-responsive' id='p45'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/6.png" alt="" class='img-responsive' id='p46'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/8.png" alt="" class='img-responsive' id='p48'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/9.png" alt="" class='img-responsive' id='p49'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/10.png" alt="" class='img-responsive' id='p410'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/11.png" alt="" class='img-responsive' id='p411'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/12.png" alt="" class='img-responsive' id='p412'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P4/hand.gif" alt="" class='img-responsive' id='hand'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide4">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P5/7.png" alt="" class='img-responsive' id='p57'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P5/5.png" alt="" class='img-responsive' id='p55'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P5/6.png" alt="" class='img-responsive' id='p56'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide5">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P6/7.png" alt="" class='img-responsive' id='p67'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P6/5.png" alt="" class='img-responsive' id='p65'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P6/6.png" alt="" class='img-responsive' id='p66'>                                               
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide6">
+        <div class="container-fluid">
+          <div class="row">
+            <img src="__PUBLIC__/Wap/images/sleep/P7/7.png" alt="" class='img-responsive' id='p77'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P7/5.png" alt="" class='img-responsive' id='p75'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P7/6.png" alt="" class='img-responsive' id='p76'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P7/8.png" alt="" class='img-responsive' id='p78'>                                               
+            <img src="__PUBLIC__/Wap/images/sleep/P7/12.png" alt="" class='img-responsive' id='p712'>                     
+            <img src="__PUBLIC__/Wap/images/sleep/P7/13.png" alt="" class='img-responsive' id='p713'>                     
+            <img src="__PUBLIC__/Wap/images/sleep/P7/14.png" alt="" class='img-responsive' id='p714'>                                           
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide slide7 swiper-no-swiping">
+        <div class="container-fluid">
+          <div class="row">                       
+            <img src="__PUBLIC__/Wap/images/sleep/P8/n/5.png" alt="" class='img-responsive' id='p85'>                        
+            <img src="__PUBLIC__/Wap/images/sleep/P8/n/6.png" alt="" class='img-responsive' id='p86'>                                                                                       
+            <img src="__PUBLIC__/Wap/images/sleep/P8/d/1.png" alt="" class='img-responsive' id='p81'>
+            <img src="__PUBLIC__/Wap/images/sleep/P8/sleep.gif" alt="" class='img-responsive' id='sleep'>                                                                                        
+            <img src="__PUBLIC__/Wap/images/sleep/P8/d/sun.gif" alt="" class='img-responsive' id='sun'>                                                                                       
+            <img src="__PUBLIC__/Wap/images/sleep/star.gif" alt="" class='img-responsive star-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/moon.png" alt="" class='img-responsive moon-static'>
+            <img src="__PUBLIC__/Wap/images/sleep/P8/clound.png" alt="" class='img-responsive clound'>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src='__PUBLIC__/Wap/js/swiper.min.js'></script>
+  <script src='__PUBLIC__/Wap/js/jquery-1.10.1.min.js'></script>
+  <script src='__PUBLIC__/Wap/js/my.js?5'></script>
+
+</body>
+</html>

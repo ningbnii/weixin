@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	  <link href="__PUBLIC__/Weixin/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="__PUBLIC__/Weixin/css/wxbuluo.css" rel="stylesheet">
+</head>
+<body>
+
+  <ul class='list-inline tplist'>
+    <php>
+      for($i=1;$i<=4;$i++){
+    </php>
+    <li <if condition="$data['tpid'] eq $i">class='active'</if>>
+      <label>
+        <img src="__PUBLIC__/Weixin/images/content/content-{$i}.png" alt="" class='img-responsive'>
+        <input type='radio' name='tpid' value='{$i}' <if condition="$data['tpid'] eq $i">checked='checked'</if>>模版{$i}
+      </label>
+    </li>
+    <php>
+    }
+    </php>
+  </ul>
+<input type='hidden' name='classify_id' id='classify_id' value=''> 
+<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+<script type="text/javascript">
+	$(function(){
+		var classify_id = parent.$('#classify_id').val();
+		$('#classify_id').val(classify_id);
+		$('input:radio').click(function(){
+			var url = '__PUBLIC__/Weixin/images/content/content-'+ $(this).val() +'.png'
+			var picshow = '#picshow_'+$('#classify_id').val();
+
+			$(window.parent.document).find(picshow).attr('href',url);
+			$(window.parent.document).find(picshow).children().attr('src',url);
+			$(window.parent.document).find(picshow).siblings('input').val($(this).val());			
+		})
+
+	})
+
+</script>
+</body>
+</html>

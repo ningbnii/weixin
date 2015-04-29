@@ -1,0 +1,60 @@
+<extend name='Base/common'/>
+
+<block name='minicolors_css'>
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/minicolors/jquery.minicolors.css">
+</block>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+    <a href="{:U('index')}" class="btn btn-success">底部菜单分类设置</a>
+    <a href="{:U('styleSet')}" class="btn btn-success">底部菜单风格选择</a>
+    <a href="{:U('plugmenu')}" class="btn btn-danger">菜单颜色设置</a><br><br>      
+    
+      <form class="form-horizontal" role="form" method="post" action="">
+                                 
+        <div class="form-group">
+          <label class="col-lg-1 control-label">菜单颜色</label>
+          <div class="col-lg-2">
+            <input type="text" id="color" class="form-control demo" data-control="hue" value="{$homeData.plugmenu_color|default='#9931de'}" name='color'>            
+          </div>
+          <div class="col-lg-4">
+            <div id="plugmenucolor">
+              <span></span>
+            </div>
+          </div>
+        </div>
+                                                                           
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form>    
+      
+   </div>
+  </div>
+</block>
+
+<block name='minicolors_js'>
+      <!-- MiniColors -->
+  <script src="__PUBLIC__/Weixin/minicolors/jquery.minicolors.min.js"></script>
+  <script>
+    $('#color').minicolors({
+      theme:'bootstrap'
+    })
+
+    $(function(){
+      $('#plugmenucolor').css('background',$('#color').val());
+
+      $('#color').change(function(){
+        var color = $(this).val();
+        $('#plugmenucolor').css('background',color);
+      });
+
+    })
+
+  </script>
+</block>
+

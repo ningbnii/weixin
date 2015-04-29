@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+    <meta name='format-detection' content='telephone=yes'>
+	<title>风雨20年</title>
+    <link rel="stylesheet" href="__PUBLIC__/Wap/test3/css/swiper.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Wap/test3/css/style.css">
+    <script src="__PUBLIC__/Wap/test3/js/audio.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	// 两秒后模拟点击
+	setTimeout(function() {
+	    // IE
+	    if(document.all) {
+	        document.getElementById("playbox").click();
+	    }
+	    // 其它浏览器
+	    else {
+	        var e = document.createEvent("MouseEvents");
+	        e.initEvent("click", true, true);
+	        document.getElementById("playbox").dispatchEvent(e);
+	    }
+	}, 2000);
+	</script>
+	<style>
+	  .btn_music {
+	  display: inline-block;
+	  width: 35px;
+	  height: 35px;
+	  background: url('__PUBLIC__/Wap/test3/images/play.png') no-repeat center center;
+	  background-size: 100% auto;
+	  position: absolute;
+	  z-index: 100;
+	  left: 15px;
+	  top: 20px;
+	  }
+	  .btn_music.on {
+	      background-image: url("__PUBLIC__/Wap/test3/images/stop.png");
+	  }
+	</style>
+</head>
+<body>
+	<span id="playbox" class="btn_music" onclick="playbox.init(this).play();">
+		<audio src="__PUBLIC__/Wap/test3/2.mp3" loop="" id="audio"></audio>
+	</span>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg.jpg" class='auto' id='p01'>
+				<img src="__PUBLIC__/Wap/test3/images/title.png" id='p02' class='img-opacity'>
+			</div>
+
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p11'>
+				<img src="__PUBLIC__/Wap/test3/images/logo.png" id='p12'>
+				<img src="__PUBLIC__/Wap/test3/images/men2.png" id='p13' class='img-opacity'>
+				<img src="__PUBLIC__/Wap/test3/images/men.png" id='p14' class='img-opacity'>
+				<img src="__PUBLIC__/Wap/test3/images/men3.png" id='p15'>
+				<img src="__PUBLIC__/Wap/test3/images/time.png" id='p16' class='img-opacity'>
+			</div>
+
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p21'>
+				<img src="__PUBLIC__/Wap/test3/images/men4.png" id='p22'>
+				<img src="__PUBLIC__/Wap/test3/images/men5.png" id='p23'>
+				<img src="__PUBLIC__/Wap/test3/images/men6.png" id='p24'>
+				<img src="__PUBLIC__/Wap/test3/images/time2.png" id='p25' class='img-opacity'>
+			</div>
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p11'>
+				<img src="__PUBLIC__/Wap/test3/images/logo.png" id='p12'>
+				<img src="__PUBLIC__/Wap/test3/images/men7.png" id='p33' class='img-hidden'>
+				<img src="__PUBLIC__/Wap/test3/images/men8.png" id='p34' class='img-hidden'>
+				<img src="__PUBLIC__/Wap/test3/images/time3.png" id='p35'>
+				<img src="__PUBLIC__/Wap/test3/images/bg3.png" id='p36'>
+			</div>
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg1.jpg" class='auto-height' id='p41'>
+				<img src="__PUBLIC__/Wap/test3/images/men9.png" id='p42'>
+				<img src="__PUBLIC__/Wap/test3/images/men10.png" id='p43'>
+				<img src="__PUBLIC__/Wap/test3/images/men11.png" id='p44'>
+				<img src="__PUBLIC__/Wap/test3/images/men12.png" id='p45'>
+				<img src="__PUBLIC__/Wap/test3/images/say.png" id='p46'>
+				<img src="__PUBLIC__/Wap/test3/images/say2.png" id='p47'>
+				<img src="__PUBLIC__/Wap/test3/images/say3.png" id='p48'>
+				<img src="__PUBLIC__/Wap/test3/images/say4.png" id='p49'>
+
+			</div>
+
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p21'>
+				<img src="__PUBLIC__/Wap/test3/images/concent.png" class='auto-width img-top img-hidden' id='p52'>
+				<img src="__PUBLIC__/Wap/test3/images/logo.png" id='p53'>				
+
+			</div>
+
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p21'>
+				<img src="__PUBLIC__/Wap/test3/images/concent2.png" class='auto-width img-top img-hidden' id='p62'>
+				<img src="__PUBLIC__/Wap/test3/images/concent2-2.png" class='auto-width img-hidden' id='p63'>
+				<img src="__PUBLIC__/Wap/test3/images/logo.png" id='p53'>				
+
+			</div>
+
+			<div class="swiper-slide">
+				<img src="__PUBLIC__/Wap/test3/images/bg2.jpg" class='auto' id='p21'>
+				<img src="__PUBLIC__/Wap/test3/images/concent3.png" class='auto-width' id='p72'>
+				<img src="__PUBLIC__/Wap/test3/images/logo.png" id='p73'>	
+				<img src="__PUBLIC__/Wap/test3/images/concent3-2.png" id='p74'>			
+
+			</div>
+
+		</div>
+	</div>
+	
+	<script src="__PUBLIC__/Wap/test3/js/jquery-1.10.1.min.js"></script>
+    <script src="__PUBLIC__/Wap/test3/js/swiper.min.js"></script>
+    <script src="__PUBLIC__/Wap/test3/js/my.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>{$wxuser.wxname}</title>
+	<meta name='viewport' content='width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=yes" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/wap.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/content/content-{$content.content}.css" media="all" />
+    <script type="text/javascript" src='__PUBLIC__/Wap/js/jQuery.js'></script>
+    <script type="text/javascript" src='__PUBLIC__/Wap/bootstrap/js/bootstrap.min.js'></script>
+</head>
+<body>
+	<div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="row" style="padding-top:15px;" id='list-navigation'>
+			<div class="col-xs-3" onClick="window.history.go(-1);"><p class='text-center'><span class="glyphicon glyphicon-circle-arrow-left"></span></p></div>
+			<div class="col-xs-3" onClick="location.href='{:U('Wap/Index/index')}'"><p class='text-center'><span class="glyphicon glyphicon-home"></span></p></div>
+			<a href="tel:<if condition="$homeInfo['dianhua'] neq ''">{$homeInfo.dianhua}</if>"><div class="col-xs-3"><p class='text-center'><span class="glyphicon glyphicon-earphone"></span></p></div></a>
+			<div class="col-xs-3">
+				<div class="dropdown">
+				  <div class="btn dropdown-toggle col-xs-12" id="dropdownMenu1" data-toggle="dropdown">
+				    
+				    <p class='text-center'><span class="glyphicon glyphicon-list"></span></p>
+				  </div>
+				  <ul class="dropdown-menu dropdown-menu-right menu_font" role="menu" aria-labelledby="dropdownMenu1">
+				  	<volist name='info' id='vo'>
+				    	<li role="presentation"><a role="menuitem" tabindex="-1" href="<if condition="$vo['url'] eq ''">{:U('Wap/Index/lists',array('classid'=>$vo['id']))}<else/>{$vo.url|htmlspecialchars_decode}</if>">{$vo.name}</a></li>
+					</volist>
+				  </ul>
+				</div>
+			</div>
+
+
+		</div>
+
+    </nav>
+
+<block name='body'></block>
+
+    </div><!-- /.container-fluid -->
+</body>
+</html>

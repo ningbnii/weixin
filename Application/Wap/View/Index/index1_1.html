@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{$tpl.wxname}</title>
+<base href="." />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/font-awesome.css" media="all" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<link href="__PUBLIC__/Wap/css/allcss/cate1_0.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Wap/css/101/iscroll.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/Wap/css/101/iscroll.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jQuery.js"></script>
+<script type="text/javascript">
+    var myScroll;
+    function loaded() {
+        myScroll = new iScroll('wrapper', {
+            snap: true,
+            momentum: false,
+            hScrollbar: false,
+            onScrollEnd: function () {
+                document.querySelector('#indicator > li.active').className = '';
+                document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+            }
+        });
+
+
+    }
+    document.addEventListener('DOMContentLoaded', loaded, false);
+</script>
+
+</head>
+<body id="cate1" <if condition="$homeInfo['play_img'] eq 1 and $homeInfo['homeurl'] neq ''">style="background:url({$homeInfo['homeurl']}) no-repeat center top;background-size:cover;"</if>>
+<if condition="$homeInfo['play_audio'] eq '1'">
+<if condition="$homeInfo['musicurl'] neq ''">
+<include file="Index:music"/>
+</if>
+</if>
+
+<ul class="mainmenu">
+  <volist name="info" id="vo">
+    <li>
+      <div class="menubtn"> <a href="<if condition="$vo['url'] eq ''">{:U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+        <else/>
+        {$vo.url|htmlspecialchars_decode}
+        </if>
+        ">
+        <div class="menumesg">
+          <div class="menuimg"><img src="{$vo.img}"></div>
+          <div class="menutitle">{$vo.name}</div>
+        </div>
+        </a> </div>
+    </li>
+  </volist>
+  <div class="clr"></div>
+</ul>
+
+<include file="Index:styleInclude"/>
+<include file="Public:footer"/>
+</body>
+</html>

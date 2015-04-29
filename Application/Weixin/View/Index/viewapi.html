@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title>微信部落</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+  <!-- Stylesheets -->
+  <link href="__PUBLIC__/Weixin/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/font-awesome.min.css"> 
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery-ui.css"> 
+  <!-- Calendar -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/fullcalendar.css">
+  <!-- prettyPhoto -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/prettyPhoto.css">  
+  <!-- Star rating -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/rateit.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/bootstrap-datetimepicker.min.css">
+  <!-- CLEditor -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.cleditor.css"> 
+  <!-- Data tables -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.dataTables.css"> 
+  <!-- Bootstrap toggle -->
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/css/jquery.onoff.css">
+  <!-- Main stylesheet -->
+  <link href="__PUBLIC__/Weixin/css/style.css" rel="stylesheet">
+  <link href="__PUBLIC__/Weixin/css/wxbuluo.css" rel="stylesheet">
+  <!-- Widgets stylesheet -->
+  <link href="__PUBLIC__/Weixin/css/widgets.css" rel="stylesheet">   
+  
+  <script src="__PUBLIC__/Weixin/js/respond.min.js"></script>
+  <!--[if lt IE 9]>
+  <script src="__PUBLIC__/Weixin/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="__PUBLIC__/Weixin/img/favicon/favicon.png">
+</head>
+
+<body>
+
+<include file='Public/header'/>
+
+
+
+<!-- Main content starts -->
+
+<div class="content">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
+
+        <!--- Sidebar navigation -->
+        <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
+        <ul id="nav">
+          <!-- Main menu with font awesome icon -->
+          <li class="open"><a href="{:U('Weixin/Index/index')}"><i class="fa fa-home"></i> 管理首页</a>
+            <!-- Sub menu markup 
+            <ul>
+              <li><a href="#">Submenu #1</a></li>
+              <li><a href="#">Submenu #2</a></li>
+              <li><a href="#">Submenu #3</a></li>
+            </ul>-->
+          </li>
+
+        </ul>
+    </div>
+
+    <!-- Sidebar ends -->
+
+        <!-- Main bar -->
+    <div class="mainbar">
+      <div class="page-head">
+        <h2 class="pull-left"><i class="fa fa-home"></i> 管理首页</h2>
+        <div class="clearfix"></div>
+      </div>     
+	<div class="matter">
+        <div class="container">
+        
+		<div class="row">
+
+              <div class="col-md-12">
+
+                <div class="widget">
+
+
+                  <div class="widget-content">
+      
+                    <dl class='showapi'>
+                      <dt>
+                          <p class='col-lg-1'>URL:</p><p id='api' class='col-lg-8'>http://{$_SERVER['HTTP_HOST']}/index.php?m=Weixin&c=Api&a=index&token={$data.token}</p>
+                        <button id='copy' class='btn btn-success'>复制URL</button>
+                      </dt>
+                      <dt>
+                        <p class='col-lg-1'>TOKEN:</p><p id='token' class='col-lg-8'>{$data.token}</p>
+                        <button id='copytoken' class='btn btn-success'>复制TOKEN</button>
+                      </dt>
+                    </dl>
+                  </div>
+
+                </div>
+
+
+              </div>
+
+            </div>            
+
+
+            
+
+        </div>
+	</div>
+
+
+
+    </div>
+
+   <!-- Mainbar ends -->
+   <div class="clearfix"></div>
+   
+
+</div>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+            <!-- Copyright info -->
+            <p class="copy">Copyright &copy; 2012 | <a href="#">Your Site</a> </p>
+      </div>
+    </div>
+  </div>
+</footer>   
+
+<!-- Footer ends -->
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
+
+<!-- JS -->
+<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+<script src="__PUBLIC__/Weixin/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+<script src="__PUBLIC__/Weixin/js/jquery-ui.min.js"></script> <!-- jQuery UI -->
+<script src="__PUBLIC__/Weixin/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<script src="__PUBLIC__/Weixin/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
+<script src="__PUBLIC__/Weixin/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
+<script src="__PUBLIC__/Weixin/js/jquery.slimscroll.min.js"></script> <!-- jQuery Slim Scroll -->
+<script src="__PUBLIC__/Weixin/js/jquery.dataTables.min.js"></script> <!-- Data tables -->
+
+<!-- jQuery Flot -->
+<script src="__PUBLIC__/Weixin/js/excanvas.min.js"></script>
+<script src="__PUBLIC__/Weixin/js/jquery.flot.js"></script>
+<script src="__PUBLIC__/Weixin/js/jquery.flot.resize.js"></script>
+<script src="__PUBLIC__/Weixin/js/jquery.flot.pie.js"></script>
+<script src="__PUBLIC__/Weixin/js/jquery.flot.stack.js"></script>
+
+<script src="__PUBLIC__/Weixin/js/sparklines.js"></script> <!-- Sparklines -->
+<script src="__PUBLIC__/Weixin/js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
+<script src="__PUBLIC__/Weixin/js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
+<script src="__PUBLIC__/Weixin/js/jquery.onoff.min.js"></script> <!-- Bootstrap Toggle -->
+<script src="__PUBLIC__/Weixin/js/filter.js"></script> <!-- Filter for support page -->
+<script src="__PUBLIC__/Weixin/js/custom.js"></script> <!-- Custom codes -->
+
+<script type="text/javascript" src='__PUBLIC__/Weixin/ZeroClipboard/ZeroClipboard.js'></script>
+<script type="text/javascript">
+$(function(){
+  init();
+  copytoken();
+});
+function init() {
+  var clip = new ZeroClipboard.Client(); // 新建一个对象
+  clip.setHandCursor( true );
+  var api = $('#api').html();
+  api = api.replace(/\&amp\;/g,'&');
+
+  clip.setText(api); // 设置要复制的文本。
+
+  clip.addEventListener( "mouseUp", function(client) {
+    alert("复制成功！");
+  });
+  // 注册一个 button，参数为 id。点击这个 button 就会复制。
+  //这个 button 不一定要求是一个 input 按钮，也可以是其他 DOM 元素。
+  clip.glue("copy"); // 和上一句位置不可调换
+}
+
+function copytoken() {
+  var clip = new ZeroClipboard.Client(); // 新建一个对象
+  clip.setHandCursor( true );
+  var token = $('#token').html();
+  clip.setText(token); // 设置要复制的文本。
+
+  clip.addEventListener( "mouseUp", function(client) {
+    alert("复制成功！");
+  });
+  // 注册一个 button，参数为 id。点击这个 button 就会复制。
+  //这个 button 不一定要求是一个 input 按钮，也可以是其他 DOM 元素。
+  clip.glue("copytoken"); // 和上一句位置不可调换
+}
+</script>
+</body>
+</html>

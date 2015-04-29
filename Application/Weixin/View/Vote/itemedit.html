@@ -1,0 +1,94 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+    
+    var editor = K.create('textarea[name="description"]', {
+        resizeType : 1,
+        allowPreviewEmoticons : false,
+        allowImageUpload : false,
+        items : [
+          'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+          'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+          'insertunorderedlist', '|', 'emoticons', 'link']
+        });
+
+    
+      editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+    fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+      
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+      <form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">标题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='title' value="{$data.title}">
+          </div>
+        </div>                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">描述</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" placeholder="" name='description'>{$data.description}</textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">投票问题</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='questionname' value="{$data.questionname}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">来源</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='name' value="{$data.name}">
+          </div>
+        </div>
+   
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="pic" id="pic" value="{$data.pic}">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+          </div>
+        </div>
+        <input type='hidden' name='id' value="{$_GET['id']}">      
+        <input type='hidden' name='pid' value="{$_GET['pid']}">                                                  
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

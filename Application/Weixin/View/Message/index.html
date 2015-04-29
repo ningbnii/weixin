@@ -1,0 +1,232 @@
+<extend name='Base/common'/>
+
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+    
+    var editor = K.create('textarea[name="content"]', {
+          allowFileManager : true
+        });
+    
+      editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+    fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+      
+      K('#chooseimg').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+
+  </script>
+
+</block>
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+    <button class="btn btn-danger" id='update'>通过群发接口给所有关注者群发</button>
+        <ul id="myTab" class="nav nav-tabs" role="tablist">
+          <li class="active"><a data-toggle="tab" role="tab" href="#text">文本消息</a></li>
+          <li class=""><a data-toggle="tab" role="tab" href="#mpnews">图文消息</a></li>
+        </ul>
+      
+
+      <div id="myTabContent" class="tab-content col-lg-12">
+        
+          <div id="text" class="tab-pane fade active in">
+            <form action="{:U('updateWecha')}" method='post' id='textform'>
+                <input type='hidden' name='type' value='text'>
+                  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr><td height="5"></td><td></td></tr>
+                <tr>
+                <td valign="top" width="420"><textarea class="px" style="width:420px; height:500px; margin:5px 0"  id="Hfcontent" name="text_content"></textarea>
+                </td>
+                <td valign="top">
+                      <div class="zdhuifu" style="margin-left:20px">
+                <h4>参考范例：</h4>
+                1.附近周边信息查询lbs<br/>
+                2.音乐查询　音乐＋音乐名  例：音乐爱你一万年<br/>
+                3.天气查询　城市名＋天气　例上海天气<br/>
+                4.手机归属地查询(吉凶 运势) 手机＋手机号码　例：手机15957706797<br/>
+                5.身份证查询　身份证＋号码　　例：身份证342423198803015568<br/>
+                6.公交查询　公交＋城市＋公交编号　例：上海公交774<br/>
+                7.火车查询　火车＋城市＋目的地　例火车上海南京<br/>
+                8.翻译 支持 及时翻译，语音翻译　翻译＋关键词 例：翻译你好<br/>
+                9.彩票查询　彩票＋彩票名  例如:彩票双色球<br/>
+                10.周公解梦　梦见+关键词　例如:梦见父母<br/>
+                11.陪聊　直接输入聊天关键词即可<br/>
+                12.聊天　直接输入聊天关键词即可<br/>
+                13.藏头诗 藏头诗+关键词　例：藏头诗我爱你　<br/>
+                14.笑话　直接发送笑话<br/>
+                15.糗事　直接发送糗事<br/>
+                16.快递 快递＋快递名＋快递号　例：快递顺丰117215889174<br/>
+                17.健康指数查询　健康＋高，＋重　例：健康170,65<br/>
+                18.朗读 朗读＋关键词　例：朗读微我网<br/>
+                19.计算器 计算器使用方法　例：计算50-50　，计算100*100<br/>
+                20.输入服务了解平台系统的售后服务<br/>
+                21.输入抽奖，即可玩幸运大抽奖<br/>
+                22.输入会员即可填写会员资料<br/>
+                23.更多功能请回复帮助，或者help<br/>
+
+                </div></td>
+                </tr>
+                <tr>
+                <td height="50">
+                       
+                <input type="submit" value="发送" class="btn btn-success left"  />
+                <div class="pull-right"  >
+                <ul>
+                <li class="biaoqing"><span>表情</span>
+                <include file='Public/face'/>
+                </li>
+                </ul>
+                </div>
+                </td><td valign="top">
+                </tr>
+                </table>
+            </form>
+          </div>
+
+
+
+          <div class="tab-pane fade col-lg-12" id="mpnews">
+
+
+              <div class="widget wblack">
+                <!-- Widget title -->
+                <div class="widget-head">
+                  <div class="pull-left">功能描述</div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                  </div>  
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget-content">
+                  <!-- Widget content -->
+                  <div class="padd">
+                      <p>封面图片尺寸：900*500，大小不能超过64kb</p>
+                      <p>图文详细页内容支持html标签</p>
+                  </div>
+
+                  <div class="widget-foot">
+                  </div>
+                </div>
+              </div>
+
+
+              <form class="form-horizontal" role="form" method="post" action="{:U('updateWecha')}" id='mpnewsform'>
+     
+                <input type='hidden' name='type' value='mpnews'>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">封面图片</label>
+                  <div class="col-lg-5">
+                    <input class="form-control" name="pic" id="pic" value="">
+                  </div>
+                  <div class='col-lg-4'>
+                    <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+                  </div>
+                </div>
+             
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">图文详细页内容</label>
+                  <div class="col-lg-8">
+                    <textarea style="height:400px;" class="form-control col-lg-8" name='content'></textarea>
+                  </div>
+                </div>
+                                                                         
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-6">
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+                  </div>
+                </div>
+              </form>
+          
+          </div>
+        </div>
+
+      
+   </div>
+  </div>
+</block>
+
+<block name='extra_js'>
+<script type="text/javascript">
+
+{/* 文本 */}
+    $(function(){
+        $('#textform').ajaxForm({
+            beforeSubmit:  checkForm,  // pre-submit callback
+            success:       complete,  // post-submit callback
+            dataType: 'json'
+        });
+        function checkForm(){
+            if($('#Hfcontent').val() == ''){
+                var d = dialog({
+                  title:'提示信息',
+                  content: '内容不能为空',
+                }).width(320).height(100).showModal();
+                return false;
+            }
+        }
+        function complete(data){
+            var d = dialog({
+              title:'提示信息',
+              content: data.info,
+            }).width(320).height(100).showModal();
+        }
+
+    });
+
+{/* 图文 */}
+    $(function(){
+      var d1;
+        $('#mpnewsform').ajaxForm({
+            beforeSubmit:  checkForm,  // pre-submit callback
+            success:       complete,  // post-submit callback
+            dataType: 'json'
+        });
+        function checkForm(){
+            if($('#pic').val() == ''){
+                var d = dialog({
+                  title:'提示信息',
+                  content: '图片不能为空',
+                }).width(320).height(100).showModal();
+                return false;
+            }
+            d1 = dialog({
+              title:'提示信息',
+              content:'群发过程较慢，请耐心等待',
+              cancel:false,
+            }).width(320).height(100).showModal();            
+        }
+        function complete(data){
+          d1.close().remove();
+            var d = dialog({
+              title:'提示信息',
+              content: data.info,
+            }).width(320).height(100).showModal();
+        }
+
+    });
+
+$(function(){
+  $('.ke-container').css('width','765px');
+})
+</script>
+</block>
+

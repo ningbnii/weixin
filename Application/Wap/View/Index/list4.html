@@ -1,0 +1,27 @@
+<extend name='Base/list'/>
+
+<block name='body'>
+  <div class="content">
+    <volist name='res' id='vo'>
+      <if condition="$vo['url']">
+        <a href="{$vo.url}">
+      <else />
+        <a href="{:U('Index/content',array('fid'=>$_GET['classid'],'id'=>$vo['id']))}">
+      </if>
+       <div class="row item">
+
+          <div class="title"><h1>{$vo.title}</h1></div>
+          <div class="col-xs-2">
+            <div class="row">
+              <img src="{$vo.pic}" alt="" class='img-responsive'>
+            </div>
+
+          </div>
+          <div class="col-xs-10">
+            <p class='info'>{$vo.text}</p>
+          </div>        
+        </div>
+      </a>
+    </volist>
+  </div>
+</block>

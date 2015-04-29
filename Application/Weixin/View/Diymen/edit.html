@@ -1,0 +1,81 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">父级菜单</label>
+          <div class="col-lg-2">
+            <select class="form-control" name='fid'>
+              <option value='0' <if condition="$data['fid'] eq 0">selected='selected'</if>>一级菜单</option>
+              <volist name='diymen' id='diymen'>
+              <option value='{$diymen.id}' <if condition="$diymen['id'] eq $data['fid']">selected='selected'</if>>
+                {$diymen.title}
+              </option>
+              </volist>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">菜单名称</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="" type="text" required='required' name='title' value='{$data.title}'>
+          </div>
+        </div>   
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">关键词</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="多个关键词请用空格格开：例如: 美丽 漂亮 好看" type="text" required='required' name='keyword' value='{$data.keyword}'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">外链url</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='url' value='{$data.url}'>
+          </div>
+        </div>
+        
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">排序</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='sort' value="{$data.sort}">
+          </div>
+        </div> 
+             
+        
+        
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否显示</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="is_show" value="1" <if condition="$data['is_show'] eq 1">checked="checked"</if> type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="is_show" value="0" <if condition="$data['is_show'] eq 0">checked="checked"</if> type="radio">
+                否
+              </label>
+            </div>
+          </div>
+        </div>
+        <input type='hidden' name='id' value='{$data.id}'>                                                         
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

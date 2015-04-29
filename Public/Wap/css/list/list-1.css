@@ -1,0 +1,21 @@
+body{background: #f5f5f5;}
+#content{
+	background: #fff;
+	border-radius: 15px;
+	border: 1px solid #f5f5f5;
+	box-shadow: 1px 2px 3px #666;
+	margin-top:80px;
+	padding: 5px;
+}
+#content li{
+	height: 60px;
+	border-bottom: 1px solid #eee;
+	padding-top: 20px;
+}
+#content li p{
+	font-family: microsoft yahei;
+	font-size: 14px;
+}
+#content li p span{
+	font-size: 14px;
+}

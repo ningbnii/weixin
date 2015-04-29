@@ -1,0 +1,25 @@
+<extend name='Base/list' />
+
+<block name='body'>
+  <div class="weimob-content" style='margin-top:80px;'>
+    <volist name="res" id="so">
+      <div class="weimob-list">
+        <if condition="$so['url']">
+        <a href="{$so.url}" class="tbox">
+        <else />
+        <a href="{:U('Index/content',array('fid'=>$_GET['classid'],'id'=>$so['id'],'token'=>$so['token']))}" class="tbox">
+        </if>
+        <div class="weimob-list-item-line">
+          <div class="weimob-list-item-title">{$so.title}</div>
+          <div class="weimob-list-item-summary">{$so.createtime|date="y-m-d",###}</div>
+          <div class="weimob-list-item-img"><img src="{$so.pic}"/></div>
+          <div class="weimob-list-item-summary">{$so.text}</div>
+        </div>
+        <div class="weimob-list-more">
+          <div class="weimob-list-item-more">阅读全文</div>
+          <div class="weimob-list-item-more-icon icon-arrow-r"></div>
+        </div>
+        </a> </div>
+    </volist>
+  </div>
+</block>

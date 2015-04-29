@@ -1,0 +1,22 @@
+body{background: #f5f5f5;font-family: microsoft yahei;}
+a{color: #000;}
+.content{
+	margin-top: 51px;
+}
+.content .title h1{
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+}
+.content .title{
+	margin-bottom: 10px;
+}
+.content .item{
+	padding: 10px;
+	background-image:-webkit-linear-gradient(to top,#F1F1F1, #fff);
+    background-image:linear-gradient(to top,#F1F1F1, #fff);
+    border-bottom: 1px solid #E6E6E6;
+}
+.content .info{
+	color:#666;
+}

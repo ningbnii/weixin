@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name='description' content='注册'>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+  <link href="__PUBLIC__/Weixin/artDialog/css/ui-dialog.css" rel="stylesheet">
+	<style type="text/css">
+		body{background: #f2f2f2;font-family: microsoft yahei;}
+    .box{margin-top: 20px;}
+    .box{margin-bottom: 20px;}
+    .item{border-radius: 5px;background: #fff;box-shadow: 0 1px 5px rgba(0,0,0,0.5);margin-bottom: 10px;}
+    .description p{text-indent: 2em;font-size: 14px;color: red;}
+    .description{margin-top: 10px;}
+
+	</style>
+</head>
+<body>
+  <div class="container-fluid box">
+    <div class="col-sm-12 item">
+      <div class="row description">
+        <div class="col-sm-12">
+          <p>{$reginfo.reginfo}</p>
+        </div>
+      </div>      
+    </div>   
+  </div>
+
+	<div class="container-fluid box">
+		<form action="{:U('reg')}" method='post' id="ajaxform">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">手机号</label>
+          <div class="col-sm-12">
+            <input class="form-control" placeholder="手机号" type="text" required='required' name='tel' id='tel'>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">姓名</label>
+          <div class="col-sm-12">
+            <input class="form-control" placeholder="姓名" type="text" required='required' name='name' id='name'>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-12">
+            <input type='hidden' name='pid' value="{$_GET['id']}">
+            <input type='submit' value='提交' class='btn btn-success col-xs-12'>
+          </div>
+        </div>			
+		</form>
+	</div>
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="__PUBLIC__/Weixin/artDialog/js/dialog-min.js"></script> <!-- Custom codes -->
+<script type="text/javascript" src="__PUBLIC__/Weixin/js/jquery.form.js"></script>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('#ajaxform').ajaxForm({
+            beforeSubmit:  checkForm,  // pre-submit callback
+            success:       complete,  // post-submit callback
+            dataType: 'json'
+        });
+
+        function checkForm(){
+           if(!$("#tel").val().match(/^1[3|4|5|8][0-9]\d{4,8}$/)){
+              var d = dialog({
+                title:'提示信息',
+                content: '手机号错误',
+              }).width(200).height(50).showModal();
+              return false;
+             }
+          if($('#name').val() == ''){
+              var d = dialog({
+                title:'提示信息',
+                content: '姓名不能为空',
+              }).width(200).height(50).showModal();
+              return false;            
+          }
+        }
+        function complete(data){
+          if(data == 1){
+            window.location.href="{:U('index',array('id'=>$_GET['id'],'token'=>$_GET['token'],'wecha_id'=>$_SESSION['wecha_id']))}";
+          }
+
+          if(data == 2){
+              var d = dialog({
+                title:'提示信息',
+                content: '注册失败',
+              }).width(200).height(50).showModal();            
+          }
+        }
+
+    });
+</script>
+</body>
+</html>

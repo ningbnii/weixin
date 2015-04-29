@@ -1,0 +1,44 @@
+<extend name='Base/content' />
+
+<block name='body'>
+<div id="content" class='col-xs-12'>
+	<div class="header">
+		
+			<h1>{$res.title}</h1>
+			<small>{$res.createtime|date="Y-m-d",###}</small>
+			<a href="{:U('Wap/Index/index')}">
+				<dl class='dl-horizontal'>
+					<dt class='col-xs-3'><img src="{$wxuser.headerpic}" alt="" class='img-responsive img-circle img-thumbnail'></dt>
+					<dd class='col-xs-8'>
+						<p>{$wxuser.wxname}</p>
+						<p>微信号：{$wxuser.weixin}</p>
+					</dd>
+					<dd>
+						<span class="glyphicon glyphicon-chevron-right pull-right" style='margin-top:20px;'></span>
+					</dd>
+				</dl>
+			</a>
+	</div>
+
+	<div class="content">
+		<img src="{$res.pic}" alt="" class='img-responsive img-thumbnail'>
+		<div class='text-justify'>{$res.info}</div>
+	</div>
+
+	<div class="history">
+		<h1><span class="glyphicon glyphicon-bookmark" style='color:#ed1dbe;'></span>往期回顾</h1>
+		<ul class="list-unstyled">
+			<volist name='recent' id='recent'>
+			<li><a href="{:U('Wap/Index/content',array('fid'=>$recent['classid'],'id'=>$recent['id']))}"><p>{$recent.text}<span class="glyphicon glyphicon-chevron-right pull-right"></span></p></a></li>
+			</volist>
+		</ul>
+		<div class='more'>
+			<a href="{:U('Wap/Index/lists',array('classid'=>$_GET['fid']))}"><p class='text-center'>更多精彩内容</p></a>
+		</div>
+	</div>
+
+	<div class="copyright">
+		<p class='text-center'>&copy; 2015 微信部落 版权所有</p>
+	</div>
+</div>
+</block>

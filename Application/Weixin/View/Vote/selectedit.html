@@ -1,0 +1,30 @@
+<extend name='Base/common'/>
+
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+      <a class='btn btn-warning' href="{:U('selectlist',array('id'=>$_GET['id'],'pid'=>$_GET['itemid']))}"><<返回列表</a>
+      <form class="form-horizontal" role="form" method="post" action="">
+                              
+        <div class="form-group">
+          <label class="col-lg-2 control-label">选项名称</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" required='required' name='itemname' value="{$data.itemname}">
+          </div>
+        </div>
+
+        <input type='hidden' name='id' value="{$_GET['id']}">
+        <input type='hidden' name='pid' value="{$_GET['pid']}">
+        <input type='hidden' name='itemid' value="{$_GET['itemid']}">                                                  
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

@@ -1,0 +1,140 @@
+<extend name='Base/common' />
+<block name="seo">
+<meta name='keyword' content="{:C('WEB_SITE_KEYWORD')}">
+<meta name='description' content="{:C('WEB_SITE_DESCRIPTION')}">
+<title>登录-{:C('WEB_SITE_TITLE')}</title>
+</block>
+
+
+<block name='main'>
+  <div class="admin-form">
+
+    <div class="row">
+
+        <!-- Widget starts -->
+            <div class="widget worange">
+              <!-- Widget head -->
+              <div class="widget-head">
+                <i class="fa fa-lock"></i> Login 
+              </div>
+
+              <div class="widget-content">
+                <div class="padd">
+                  <!-- Login form -->
+                  <div class="form-horizontal">
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label class="control-label col-xs-3 text-right" for="inputEmail">用户名</label>
+                      <div class="col-xs-8">
+                        <input type="text" id="username" class="form-control" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+                      </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                      <label class="control-label col-xs-3 text-right" for="inputPassword">密码</label>
+                      <div class="col-xs-8">
+                        <input type="password" id="password"  class="form-control" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+                      </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                      <label class="control-label col-xs-3 text-right" for="inputPassword">验证码</label>
+                      <div class="col-xs-8">
+                        <input type="text" id="verify" class="form-control" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-xs-3 text-right"></label>
+                    <div class="col-xs-8">
+                        <img class="verifyimg reloadverify" alt="点击切换" src="{:U('Home/User/verify')}" style="cursor:pointer;">
+                    </div>
+                   
+                  </div>
+
+                  <div class="col-xs-9 col-xs-offset-3">
+                    <button type="submit" class="btn btn-info btn-sm" id='submit'>登陆</button>
+                  
+                  </div>
+                    <br>
+                  </div>
+          
+        </div>
+                </div>
+              
+                <div class="widget-foot">
+                  Not Registred? <a href="{:U('Home/User/register')}">Register here</a>
+                </div>
+            </div>  
+    </div>
+</div>
+</block>    
+
+<block name='extra_js'>
+  <script type="text/javascript">
+    $(function(){
+      var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+
+
+      $('#submit').click(function(){
+          var username = $('#username').val();
+          var password = $('#password').val();
+          var verify = $('#verify').val();
+          
+        $.ajax({
+          url:"{:U('Home/User/login')}",
+          type:'post',
+          data:{username:username,password:password,verify:verify},
+          success:function(data){
+
+            if(data.jump_url){
+              if(data.jump_url == '10001'){
+                    var d = dialog({
+                      title:'提示信息',
+                      content: '登陆失败，域名未授权',
+                    }).width(320).height(100).showModal();
+                    return false;              
+              }else if (data.jump_url == '10002') {
+                    var d = dialog({
+                      title:'提示信息',
+                      content: '登陆失败，授权码未填写',
+                    }).width(320).height(100).showModal();
+                    return false;                
+              }else{
+                window.location.href= data.jump_url;
+                return false;
+              }              
+            }
+
+            if(data.info == '登录成功！'){
+
+              window.location.href="{:U('Weixin/Index/index')}";
+              return false;
+            }
+                
+            var d = dialog({
+              title:'提示信息',
+              content: data.info,
+            }).width(320).height(100).showModal();
+            setTimeout(function () {
+                d.close().remove();
+            }, 2000);
+          }
+        });
+      })
+      
+
+    })
+
+  </script>
+  </block> 
+
+ 
+
+

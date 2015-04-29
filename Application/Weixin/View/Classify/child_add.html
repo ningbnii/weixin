@@ -1,0 +1,143 @@
+<extend name='Base/common'/>
+<block name='kindeditor'>
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Weixin/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='__PUBLIC__/Weixin/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+		
+    var editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '__PUBLIC__/Weixin/kindeditor/php/upload_json.php?o={$Think.session.token}',
+		fileManagerJson : '__PUBLIC__/Weixin/kindeditor/php/file_manager_json.php?o={$Think.session.token}',
+      });
+
+      K('#choose_icon').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#icon').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#icon').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+      K('#choose_img').click(function(){
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#img').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#img').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+</block>
+
+<block name='minicolors_css'>
+  <link rel="stylesheet" href="__PUBLIC__/Weixin/minicolors/jquery.minicolors.css">
+</block>
+
+<block name='body'>
+  <div class="matter">
+	 <div class="container">
+    	<form class="form-horizontal" role="form" method="post" action="">
+                                 
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类名称</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='name' required=''>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类描述</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='info' placeholder='可以为空'>
+          </div>
+        </div>
+                
+        <div class="form-group">
+          <label class="col-lg-2 control-label">网站图标</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="icon" id="icon" value="">
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_icon' class='btn btn-success'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类图片</label>
+          <div class="col-lg-5">
+            <input class="form-control" name="img" id="img" value="" required=''>
+          </div>
+          <div class='col-lg-1'>
+            <input type='button' value='选择图片' id='choose_img' class='btn btn-success'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">菜单颜色</label>
+          <div class="col-lg-5">
+            <input type="text" id="yanse" class="form-control demo" data-control="hue" value="#ff6161" name='yanse'>            
+          </div>
+        </div>
+                             
+        <div class="form-group">
+          <label class="col-lg-2 control-label">外链</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='url'>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">排序</label>
+          <div class="col-lg-5">
+            <input class="form-control" type="text" name='sorts'>
+          </div>
+        </div> 
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否显示</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="status" value="1" checked="checked" type="radio">
+                是
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="status" value="0" type="radio">
+                否
+              </label>
+            </div>
+          </div>
+        </div>       
+                                                                 
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>
+
+<block name='minicolors_js'>
+      <!-- MiniColors -->
+  <script src="__PUBLIC__/Weixin/minicolors/jquery.minicolors.min.js"></script>
+  <script>
+    $('#yanse').minicolors({
+      theme:'bootstrap'
+    })
+  </script>
+</block>

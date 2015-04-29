@@ -1,0 +1,65 @@
+<extend name='Base/common'/>
+
+<block name='body'>
+  <div class="matter">
+        <div class="container">
+          <a href="{:U('add')}" class="btn btn-success">新增自定义文本回复</a>        
+
+                <div class="widget">
+
+                <div class="widget-head">
+                  <div class="pull-left">自定文本回复列表</div>
+                  <div class="clearfix"></div>
+                </div>
+
+                  <div class="widget-content">
+
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>关键词</th>
+                          <th>创建时间</th>
+                          <th>修改时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name='list' id='vo'>
+                        <tr>
+                          <td>{$i}</td>
+                          <td>{$vo.keyword}</td>
+                          <td>{$vo.createtime|date='Y-m-d',###}</td>
+                          <td>{$vo.updatetime|date='Y-m-d',###}</td>
+                          <td>
+                              <a href="{:U('edit',array('id'=>$vo['id']))}"><button class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i> </button></a>
+                              <a href="{:U('del',array('id'=>$vo['id']))}"><button class="btn btn-xs btn-danger"><i class="fa fa-times"></i> </button></a>
+                          </td>
+                        </tr>
+                        </volist>                               
+                      </tbody>
+                    </table>
+
+                    <div class="widget-foot">
+
+                     
+                        <ul class="pagination pagination-sm pull-right">
+                          <li><a href="#">Prev</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">Next</a></li>
+                        </ul>
+                     
+                      <div class="clearfix"></div> 
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+        </div>
+  </div>   
+</block>

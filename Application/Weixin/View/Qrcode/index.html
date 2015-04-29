@@ -1,0 +1,45 @@
+<extend name='Base/common'/>
+
+
+<block name='body'>
+  <div class="matter">
+   <div class="container">
+      <form class="form-horizontal" role="form" method="post" action="">
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">是否开启配置</label>
+          <div class="col-lg-5">
+            <div class="radio">
+              <label>
+                <input name="is_qrcode" value="1" type="radio" <if condition="$data['is_qrcode'] eq 1">checked="checked" </if>>
+                 开启（当不在微信端打开浏览器的时候显示的页面）
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input name="is_qrcode" value="2" type="radio" <if condition="$data['is_qrcode'] eq 2">checked="checked" </if>>
+                 关闭
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">外链URL</label>
+          <div class="col-lg-5">
+            <input class="form-control" placeholder="" type="text" name='qrcode_url' value='{$data.qrcode_url}'>
+          </div>
+        </div>
+
+        <input type='hidden' name='id' value='{$data.id}'>                                                         
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-6">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+
+          </div>
+        </div>
+      </form> 
+   </div>
+  </div>
+
+</block>

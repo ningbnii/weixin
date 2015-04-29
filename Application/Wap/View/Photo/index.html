@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>微相册</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link href="__PUBLIC__/Wap/photo/css/photoswipe.css" type="text/css" rel="stylesheet" />	
+	<link href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />	
+	<link href="__PUBLIC__/Wap/photo/css/style.css" type="text/css" rel="stylesheet" />
+	<style type="text/css">
+	body{background: url({$bgpic}) no-repeat center top;background-size: cover;}
+	li{margin-top: 10px;}
+	</style>	
+</head>
+<body>
+<div id="MainContent">
+	<ul id="Gallery" class="gallery list-unstyled col-xs-6">
+		<volist name='list' id='vo' mod='2'>
+		<eq name='mod' value='0'>
+		<li><a href="{$vo.pic}"><img src="{$vo.pic}" alt="{$vo.title}" class='img-responsive img-thumbnail'/></a></li>
+		</eq>
+		</volist>
+	</ul>
+	<ul id="Gallery" class="gallery list-unstyled col-xs-6">
+		<volist name='list' id='vo' mod='2'>
+		<eq name='mod' value='1'>
+		<li><a href="{$vo.pic}"><img src="{$vo.pic}" alt="{$vo.title}" class='img-responsive img-thumbnail'/></a></li>
+		</eq>
+		</volist>
+	</ul>
+</div>
+	<script type="text/javascript" src="__PUBLIC__/Wap/photo/js/klass.min.js"></script>
+	<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+	<script type="text/javascript" src="__PUBLIC__/Wap/photo/js/code.photoswipe.jquery-3.0.5.min.js"></script>	
+	<script type="text/javascript">
+		(function(window, $, PhotoSwipe){			
+			$(document).ready(function(){				
+				var options = {};
+				$("#Gallery a").photoSwipe(options);			
+			});			
+		}(window, window.jQuery, window.Code.PhotoSwipe));
+
+		$(function(){
+			$()
+		})		
+	</script>
+</body>
+</html>

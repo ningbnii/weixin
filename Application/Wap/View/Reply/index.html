@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>留言</title>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Wap/reply/css/style.css">
+</head>
+<body>
+	<div class="container-fluid box">
+		<volist name='list' id='vo'>
+			<if condition="$vo['type'] eq 0">
+			<div class="col-sm-12 item">
+				<div class="row">
+					<div class="col-xs-3">
+						<img src="__PUBLIC__/Wap/reply/images/portrait2.png" alt="" class='img-responsive'>
+					</div>
+					<div class="col-xs-8 message-box-left">
+						<p>{$vo.content}</p>
+						<div class="triangle-left"></div>
+					</div>
+				</div>
+				<div class='center-block date'><p class="text-center">{$vo.createtime|date='Y-m-d H:i:s',###}</p></div>
+			</div>
+			<else/>
+			
+			<div class="col-sm-12 item">
+				<div class="row">
+					<div class="col-xs-8 message-box-right col-xs-offset-1">
+						<p>{$vo.content}</p>
+						<div class="triangle-right"></div>
+					</div>
+					<div class="col-xs-3">
+						<img src="__PUBLIC__/Wap/reply/images/portrait.png" alt="" class='img-responsive pull-right'>
+					</div>
+				</div>
+				<div class='center-block date'><p class="text-center">{$vo.createtime|date='Y-m-d H:i:s',###}</p></div>
+			</div>
+			</if>
+		</volist>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+      <form class="form" method='post' action="{:U('reply')}" id='ajaxform'>
+        <div class="form-group col-xs-9">
+          <input type="text" class="form-control" placeholder="留言" name='content' id='content'>
+          <input type="hidden" name='type' value='0'>
+        </div>
+        <button type="submit" class="btn btn-default pull-right">发送</button>
+      </form>		
+	</nav>
+
+<script src="__PUBLIC__/Weixin/js/jquery.js"></script> <!-- jQuery -->
+<script src="__PUBLIC__/Weixin/js/jquery.form.js"></script> <!-- Custom codes -->
+
+<script type="text/javascript">
+	function onBridgeReady(){
+	 WeixinJSBridge.call('hideOptionMenu');
+	}
+
+	if (typeof WeixinJSBridge == "undefined"){
+	    if( document.addEventListener ){
+	        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	    }else if (document.attachEvent){
+	        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+	        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+	    }
+	}else{
+	    onBridgeReady();
+	}
+
+    $(function(){
+        $('#ajaxform').ajaxForm({
+            beforeSubmit:  checkForm,  // pre-submit callback
+            success:       complete,  // post-submit callback
+            dataType: 'json'
+        });
+        function checkForm(){
+            if($('#content').val() == ''){
+                return false;
+            }
+        }
+        function complete(data){
+            if(data.info == '添加成功'){
+        		var str = '';
+            	str = str + '<div class="col-sm-12 item">';
+								str = str +	'<div class="row">';
+										str = str + '<div class="col-xs-3">';
+										str = str + '<img src="__PUBLIC__/Wap/reply/images/portrait2.png" alt="" class="img-responsive">';
+										str = str + '</div>';
+										str = str + '<div class="col-xs-8 message-box-left">';
+											str = str + '<p>'+ data.data.content +'</p>';
+											str = str + '<div class="triangle-left"></div>';
+										str = str + '</div>';
+									str = str + '</div>';
+									str = str + '<div class="center-block date"><p class="text-center">'+ data.data.createtime +'</p></div>';
+								str = str + '</div>';
+				$('.box').append(str);
+            }
+        }
+
+    	{/* 获取回复的信息 */}
+    	function getreply(){
+    		$.ajax({
+    			type:'get',
+    			url:"{:U('getreply')}",
+    			success:function(data){
+    				if(data.info == 1){
+			            var str = '';
+			              str = str + '<div class="col-sm-12 item">';
+			                str = str + '<div class="row">';
+			                    str = str + '<div class="col-xs-8 message-box-right col-xs-offset-1">';
+			                      str = str + '<p>'+ data.data.content +'</p>';
+			                      str = str + '<div class="triangle-right"></div>';
+			                    str = str + '</div>';
+			                    str = str + '<div class="col-xs-3">';
+			                    str = str + '<img src="__PUBLIC__/Wap/reply/images/portrait.png" alt="" class="img-responsive pull-right">';
+			                    str = str + '</div>';
+			                  str = str + '</div>';
+			                  str = str + '<div class="center-block date"><p class="text-center">'+ data.data.createtime +'</p></div>';
+			                str = str + '</div>';
+			        $('.box').append(str);   					
+    				}
+    			}
+    		});
+    	}
+
+    	setInterval(getreply,1000);
+    });
+
+	
+
+
+</script>
+
+
+</body>
+</html>
